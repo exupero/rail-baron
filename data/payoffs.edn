@@ -1,0 +1,440 @@
+:Albany
+  :Baltimore 3.5
+  :Boston 2
+  :Buffalo 3
+  :New-York 1.5
+  :Philadelphia 2.5
+  :Pittsburgh 5.5
+  :Portland-Maine 3
+  :Washington 3.5
+
+  :Atlanta 10
+  :Charleston 9.5
+  :Charlotte 7.5
+  :Chattanooga 10
+  :Jacksonville 11
+  :Knoxville 8.5
+  :Miami 15
+  :Mobile 13.5
+  :Norfolk 6
+  :Richmond 5
+  :Tampa 13.5
+
+  :Chicago 8
+  :Cincinnati 7
+  :Columbus 6
+  :Detroit 5.5
+  :Indianapolis 7.5
+  :Milwaukee 9
+  :St-Louis 10
+
+  :Birmingham 11
+  :Dallas 17
+  :Fort-Worth 17
+  :Houston 18.5
+  :Little-Rock 13.5
+  :Louisville 8.5
+  :Memphis 12.5
+  :Nashville 10.5
+  :New-Orleans 15
+  :San-Antonio 19.5
+  :Shreveport 16
+
+  :Denver 18.5
+  :Des-Moines 12
+  :Fargo 14.5
+  :Kansas-City 12.5
+  :Minneapolis 12.5
+  :Oklahoma-City 15.5
+  :Omaha 13
+  :Pueblo 18.5
+  :St-Paul 12
+
+  :Billings 21
+  :Butte 23.5
+  :Casper 18
+  :Pocatello 23.5
+  :Portland-Oregon 30
+  :Rapid-City 17
+  :Salt-Lake-City 23.5
+  :Seattle 31.5
+  :Spokane 26.5
+
+  :El-Paso 22
+  :Las-Vegas 28
+  :Los-Angeles 30.5
+  :Oakland 31
+  :Phoenix 27.5
+  :Reno 25.5
+  :Sacramento 27
+  :San-Diego 31.5
+  :San-Francisco 31
+  :Tucumcari 18.5
+
+:Baltimore
+  :Albany 3.5
+  :Boston 4
+  :Buffalo 4
+  :New-York 2
+  :Philadelphia 1
+  :Pittsburgh 3.5
+  :Portland-Maine 5.5
+  :Washington 0.5
+
+  :Atlanta 7
+  :Charleston 5.5
+  :Charlotte 4
+  :Chattanooga 6.5
+  :Jacksonville 8
+  :Knoxville 5.5
+  :Miami 11.5
+  :Mobile 10.5
+  :Norfolk 2.5
+  :Richmond 1.5
+  :Tampa 10
+
+  :Chicago 8
+  :Cincinnati 6
+  :Columbus 5
+  :Detroit 6
+  :Indianapolis 7
+  :Milwaukee 8
+  :St-Louis 9
+
+  :Birmingham 8
+  :Dallas 14.5
+  :Fort-Worth 14.5
+  :Houston 15
+  :Little-Rock 11
+  :Louisville 7
+  :Memphis 9.5
+  :Nashville 7.5
+  :New-Orleans 11.5
+  :San-Antonio 17
+  :Shreveport 12.5
+
+  :Denver 18
+  :Des-Moines 11.5
+  :Fargo 14.5
+  :Kansas-City 12
+  :Minneapolis 12
+  :Oklahoma-City 14.5
+  :Omaha 13
+  :Pueblo 18
+  :St-Paul 12
+
+  :Billings 21
+  :Butte 23
+  :Casper 18
+  :Pocatello 23.5
+  :Portland-Oregon 30.5
+  :Rapid-City 17
+  :Salt-Lake-City 23
+  :Seattle 29.5
+  :Spokane 26.5
+
+  :El-Paso 21
+  :Las-Vegas 27.5
+  :Los-Angeles 29
+  :Oakland 30.5
+  :Phoenix 27
+  :Reno 28.5
+  :Sacramento 30
+  :San-Diego 28.5
+  :San-Francisco 30.5
+  :Tucumcari 18.5
+
+:Boston
+  :Albany 2.0
+  :Baltimore 4.0
+  :Boston 0.0
+  :Buffalo 5.0
+  :New-York 2.5
+  :Philadelphia 3.0
+  :Pittsburgh 6.5
+  :Portland-Maine 1.0
+  :Washington 4.5
+
+  :Atlanta 11.0
+  :Charleston 9.5
+  :Charlotte 8.5
+  :Chattanooga 11.5
+  :Jacksonville 12.0
+  :Knoxville 9.5
+  :Miami 16.0
+  :Mobile 14.5
+  :Norfolk 7.0
+  :Richmond 5.5
+  :Tampa 14.0
+
+  :Chicago 10.0
+  :Cincinnati 9.5
+  :Columbus 7.0
+  :Detroit 8.0
+  :Indianapolis 7.5
+  :Milwaukee 9.5
+  :St-Louis 11.0
+
+  :Birmingham 12.0
+  :Dallas 18.5
+  :Fort-Worth 19.5
+  :Houston 19.5
+  :Little-Rock 15.0
+  :Louisville 10.5
+  :Memphis 14.0
+  :Nashville 12.0
+  :New-Orleans 15.5
+  :San-Antonio 21.0
+  :Shreveport 16.5
+
+  :Denver 20.5
+  :Des-Moines 14.0
+  :Fargo 16.5
+  :Kansas-City 14.5
+  :Minneapolis 14.0
+  :Oklahoma-City 17.5
+  :Omaha 15.0
+  :Pueblo 21.0
+  :St-Paul 14.0
+
+  :Billings 23.0
+  :Butte 25.5
+  :Casper 20.0
+  :Pocatello 25.5
+  :Portland-Oregon 32.0
+  :Rapid-City 20.5
+  :Salt-Lake-City 25.5
+  :Seattle 31.5
+  :Spokane 28.5
+
+  :El-Paso 0.0
+  :Las-Vegas 0.0
+  :Los-Angeles 0.0
+  :Oakland 0.0
+  :Phoenix 0.0
+  :Reno 0.0
+  :Sacramento 0.0
+  :San-Diego 0.0
+  :San-Francisco 0.0
+  :Tucumcari 0.0
+
+:Buffalo
+  :Albany 3.0
+  :Baltimore 4.0
+  :Boston 5.0
+  :Buffalo 0.0
+  :New-York 4.0
+  :Philadelphia 4.0
+  :Pittsburgh 2.5
+  :Portland-Maine 6.0
+  :Washington 4.5
+
+  :Atlanta 9.5
+  :Charleston 9.5
+  :Charlotte 8.0
+  :Chattanooga 8.0
+  :Jacksonville 12.0
+  :Knoxville 7.5
+  :Miami 15.5
+  :Mobile 12.0
+  :Norfolk 6.5
+  :Richmond 5.5
+  :Tampa 14.0
+
+  :Chicago 5.0
+  :Cincinnati 4.5
+  :Columbus 2.0
+  :Detroit 3.0
+  :Indianapolis 2.5
+  :Milwaukee 4.5
+  :St-Louis 6.0
+
+  :Birmingham 9.0
+  :Dallas 14.0
+  :Fort-Worth 14.0
+  :Houston 15.5
+  :Little-Rock 10.5
+  :Louisville 5.5
+  :Memphis 9.5
+  :Nashville 7.5
+  :New-Orleans 13.0
+  :San-Antonio 16.5
+  :Shreveport 14.0
+
+  :Denver 15.5
+  :Des-Moines 9.0
+  :Fargo 11.5
+  :Kansas-City 9.5
+  :Oklahoma-City 12.5
+  :Omaha 10.0
+  :Pueblo 15.5
+  :St-Paul 9.0
+
+  :Billings 18.0
+  :Butte 20.5
+  :Casper 15.0
+  :Pocatello 20.5
+  :Portland-Oregon 27.0
+  :Rapid-City 14.0
+  :Salt-Lake-City 20.5
+  :Seattle 26.5
+  :Spokane 23.5
+
+  :El-Paso 19.0
+  :Las-Vegas 25.0
+  :Los-Angeles 27.5
+  :Oakland 28.0
+  :Phoenix 24.5
+  :Reno 25.5
+  :Sacramento 27.0
+  :San-Diego 27.0
+  :San-Francisco 28.0
+  :Tucumcari 16.5
+
+:New-York
+  :Albany 1.5
+  :Baltimore 2.0
+  :Boston 2.5
+  :Buffalo 4.0
+  :New-York 0.0
+  :Philadelphia 1.0
+  :Pittsburgh 4.5
+  :Portland-Maine 3.5
+  :Washington 2.0
+
+  :Atlanta 8.5
+  :Charleston 7.5
+  :Charlotte 6.0
+  :Chattanooga 8.5
+  :Jacksonville 10.0
+  :Knoxville 7.5
+  :Miami 13.5
+  :Mobile 12.0
+  :Norfolk 4.5
+  :Richmond 3.5
+  :Tampa 12.0
+
+  :Chicago 9.0
+  :Cincinnati 7.5
+  :Columbus 5.5
+  :Detroit 6.5
+  :Indianapolis 6.5
+  :Milwaukee 8.0
+  :St-Louis 10.0
+
+  :Birmingham 10.0
+  :Dallas 16.0
+  :Fort-Worth 16.5
+  :Houston 17.0
+  :Little-Rock 13.0
+  :Louisville 8.5
+  :Memphis 11.5
+  :Nashville 9.5
+  :New-Orleans 13.5
+  :San-Antonio 19.0
+  :Shreveport 15.5
+
+  :Denver 19.5
+  :Des-Moines 12.5
+  :Fargo 15.5
+  :Kansas-City 13.5
+  :Minneapolis 13.0
+  :Oklahoma-City 16.0
+  :Omaha 14.0
+  :Pueblo 19.5
+  :St-Paul 13.0
+
+  :Billings 22.0
+  :Butte 24.0
+  :Casper 19.0
+  :Pocatello 24.5
+  :Portland-Oregon 31.0
+  :Rapid-City 18.0
+  :Salt-Lake-City 24.0
+  :Seattle 30.5
+  :Spokane 27.5
+
+  :El-Paso 23.0
+  :Las-Vegas 28.0
+  :Los-Angeles 31.0
+  :Oakland 31.5
+  :Phoenix 28.0
+  :Reno 29.5
+  :Sacramento 31.0
+  :San-Diego 30.5
+  :San-Francisco 31.5
+  :Tucumcari 20.0
+
+:Philadelphia
+  :Albany 2.5
+  :Baltimore 1.0
+  :Boston 3.0
+  :Buffalo 4.0
+  :New-York 1.0
+  :Philadelphia 0.0
+  :Pittsburgh 3.5
+  :Portland-Maine 4.5
+  :Washington 1.5
+
+  :Atlanta 7.5
+  :Charleston 8.0
+  :Charlotte 5.0
+  :Chattanooga 7.5
+  :Jacksonville 9.0
+  :Knoxville 6.5
+  :Miami 12.5
+  :Mobile 11.0
+  :Norfolk 3.5
+  :Richmond 2.5
+  :Tampa 11.0
+
+  :Chicago 8.0
+  :Cincinnati 6.5
+  :Columbus 5.0
+  :Detroit 5.5
+  :Indianapolis 6.5
+  :Milwaukee 7.0
+  :St-Louis 9.0
+
+  :Birmingham 9.0
+  :Dallas 15.5
+  :Fort-Worth 15.5
+  :Houston 16.0
+  :Little-Rock 12.0
+  :Louisville 8.0
+  :Memphis 10.5
+  :Nashville 8.5
+  :New-Orleans 12.5
+  :San-Antonio 18.0
+  :Shreveport 13.5
+
+  :Denver 18.5
+  :Des-Moines 11.5
+  :Fargo 14.5
+  :Kansas-City 12.0
+  :Minneapolis 12.0
+  :Oklahoma-City 15.0
+  :Omaha 13.0
+  :Pueblo 18.5
+  :St-Paul 12.0
+
+  :Billings 21.0
+  :Butte 23.5
+  :Casper 18.0
+  :Pocatello 23.5
+  :Portland-Oregon 30.0
+  :Rapid-City 17.0
+  :Salt-Lake-City 23.5
+  :Seattle 29.5
+  :Spokane 26.5
+
+  :El-Paso 22.0
+  :Las-Vegas 28.0
+  :Los-Angeles 30.0
+  :Oakland 31.0
+  :Phoenix 27.0
+  :Reno 28.5
+  :Sacramento 30.0
+  :San-Diego 29.5
+  :San-Francisco 31.0
+  :Tucumcari 19.0
