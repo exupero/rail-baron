@@ -1,5 +1,5 @@
 (ns baron.core
-  (:use [cljs.core.async :only [chan <! put! close!]])
+  (:use [cljs.core.async :only [chan <! >! put! close!]])
   (:require [strokes :refer [d3]]
             [baron.plot :as plot]
             [cljs.reader :as reader]
@@ -21,23 +21,24 @@
                   (.center [-17.6076 -4.7913])
                   (.scale 1297)))
 
-(defn draw-usa [graph {:keys [width height]} border]
-  (-> graph
-    (plot/append!
-      [:defs {}
-       [:path {:datum (.feature js/topojson border (-> border :objects :land))
-               :attr {:id "land"
-                      :d (-> d3 :geo .path
-                           (.projection projection))}}]]
-      [:clipPath {:attr {:id "clip"}}
-       [:use {:attr {:xlink:href "#land"}}]]
-      [:image {:attr {:clip-path "url(#clip)"
-                      :xlink:href "/resources/public/img/shaded-relief.png"
-                      :width width
-                      :height height}}]
-      [:use {:attr {:xlink:href "#land"}}])))
+(defn draw-usa! [graph {:keys [width height]} border]
+  (plot/append! graph
+                [:g {:attr {:id "usa"
+                            :transform "translate(20, 0) scale(0.95)"}}
+                 [:defs {}
+                  [:path {:datum (.feature js/topojson border (-> border :objects :land))
+                          :attr {:id "land"
+                                 :d (-> d3 :geo .path
+                                      (.projection projection))}}]]
+                 [:clipPath {:attr {:id "clip"}}
+                  [:use {:attr {:xlink:href "#land"}}]]
+                 [:image {:attr {:clip-path "url(#clip)"
+                                 :xlink:href "/resources/public/img/shaded-relief.png"
+                                 :width width
+                                 :height height}}]
+                 [:use {:attr {:xlink:href "#land"}}]]))
 
-(defn draw-cities [graph cities]
+(defn draw-cities! [graph cities]
   (plot/bind! graph ".city" (seq cities)
               [:g {:attr {:class "city"
                           :transform #(let [{:keys [lat lon]} (second %)]
@@ -47,8 +48,10 @@
                                 :stroke-width 2
                                 :r 10
                                 :cx 0
-                                :cy 0
-                                :data-name first}}]]))
+                                :cy 0}}]]))
+
+(defn select-city! [city]
+  (plot/configure! city {:attr {:fill "firebrick"}}))
 
 (defn draggable! [sel]
   (let [drag #(this-as this
@@ -58,10 +61,25 @@
     (.call sel
            (-> d3 :behavior .drag (.on "drag" drag)))))
 
+(defn click-chan [sel msg-type]
+  (let [ch (chan)]
+    (.on sel "mousedown"
+         #(this-as this
+                   (put! ch {:msg-type msg-type
+                             :target (.select d3 this)})))
+    ch))
+
 (go
   (let [size {:width 960 :height 600}
         graph (-> d3
                 (.select "#map")
                 (plot/svg size))]
-    (draw-usa graph size (<! (fetch #(.parse js/JSON %) "/data/us.json")))
-    (draw-cities graph (<! (fetch reader/read-string "/data/cities.edn")))))
+    (draw-usa! graph size (<! (fetch #(.parse js/JSON %) "/data/us.json")))
+    (draw-cities! (.selectAll graph "#usa")
+                  (<! (fetch reader/read-string "/data/cities.edn")))
+    (let [selections (click-chan (.selectAll d3 ".city circle") :selection)]
+      (go
+        (loop []
+          (let [city (<! selections)]
+            (select-city! (:target city)))
+          (recur))))))

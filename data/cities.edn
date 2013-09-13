@@ -1,67 +1,67 @@
-{:Albany {:lat 42.6525 :lon -73.757222}
- :Atlanta {:lat 33.755 :lon -84.39}
- :Baltimore {:lat 39.311788 :lon -76.424362}
- :Billings {:lat 45.786667 :lon -108.537222}
- :Birmingham {:lat 52.483056 :lon -1.893611}
- :Boston {:lat 42.358056 :lon -71.063611}
- :Buffalo {:lat 42.904722 :lon -78.849444}
- :Butte {:lat 46.006389 :lon -112.529722}
- :Casper {:lat 42.834722 :lon -106.325}
- :Charleston {:lat 32.783333 :lon -79.933333}
- :Charlotte {:lat 35.226944 :lon -80.843333}
- :Chattanooga {:lat 35.045556 :lon -85.267222}
- :Chicago {:lat 41.881944 :lon -87.627778}
- :Cincinnati {:lat 39.1 :lon -84.516667}
- :Cleveland {:lat 41.482222 :lon -81.669722}
- :Columbus {:lat 39.983333 :lon -82.983333}
- :Dallas {:lat 32.766070 :lon -96.732521}
- :Denver {:lat 39.739167 :lon -104.984722}
- :Des-Moines {:lat 41.590833 :lon -93.620833}
- :Detroit {:lat 42.331389 :lon -83.045833}
- :El-Paso {:lat 31.790278 :lon -106.423333}
- :Fargo {:lat 46.877222 :lon -96.789444}
- :Fort-Worth {:lat 32.661326 :lon -97.780723}
- :Houston {:lat 29.762778 :lon -95.383056}
- :Indianapolis {:lat 39.791 :lon -86.148}
- :Jacksonville {:lat 30.336944 :lon -81.661389}
- :Kansas-City {:lat 39.1 :lon -94.58}
- :Knoxville {:lat 35.972778 :lon -83.942222}
- :Las-Vegas {:lat 36.175 :lon -115.136389}
- :Little-Rock {:lat 34.736111 :lon -92.331111}
- :Los-Angeles {:lat 34.05 :lon -118.25}
- :Louisville {:lat 38.25 :lon -85.766667}
- :Memphis {:lat 35.117365 :lon -89.971068}
- :Miami {:lat 25.787676 :lon -80.224145}
- :Milwaukee {:lat 43.05 :lon -87.95}
- :Minneapolis {:lat 45.184052 :lon -93.942612}
- :Mobile {:lat 30.694444 :lon -88.043056}
- :Nashville {:lat 36.166667 :lon -86.783333}
- :New-Orleans {:lat 29.966667 :lon -90.05}
- :New-York {:lat 40.67 :lon -73.94}
- :Norfolk {:lat 36.916667 :lon -76.2}
- :Oakland {:lat 37.960975 :lon -121.865691}
- :Oklahoma-City {:lat 35.482222 :lon -97.535}
- :Omaha {:lat 41.25 :lon -96}
- :Philadelphia {:lat 39.95 :lon -75.17}
- :Phoenix {:lat 33.45 :lon -112.066667}
- :Pittsburgh {:lat 40.441667 :lon -80}
- :Pocatello {:lat 42.875222 :lon -112.447278}
- :Portland-Maine {:lat 43.666667 :lon -70.266667}
- :Portland-Oregon {:lat 45.52 :lon -122.681944}
- :Pueblo {:lat 38.266944 :lon -104.620278}
- :Rapid-City {:lat 44.076 :lon -103.228}
- :Reno {:lat 39.527222 :lon -119.821944}
- :Richmond {:lat 37.540972 :lon -77.432889}
- :Sacramento {:lat 38.776538 :lon -121.424156}
- :Salt-Lake-City {:lat 40.75 :lon -111.883333}
- :San-Antonio {:lat 29.416667 :lon -98.5}
- :San-Diego {:lat 32.715 :lon -117.1625}
- :San-Francisco {:lat 37.441367 :lon -122.803391}
- :Seattle {:lat 47.609722 :lon -122.333056}
- :Shreveport {:lat 32.468056 :lon -93.921111}
- :Spokane {:lat 47.658889 :lon -117.425}
- :St-Louis {:lat 38.627222 :lon -90.197778}
- :St-Paul {:lat 45.2430 :lon -92.6761}
- :Tampa {:lat 27.971 :lon -82.465}
- :Tucumcari {:lat 35.169444 :lon -103.725556}
- :Washington {:lat 38.730621 :lon -77.285942}}
+{:Albany {:name "Albany" :lat 42.6525 :lon -73.757222}
+ :Atlanta {:name "Atlanta" :lat 33.755 :lon -84.39}
+ :Baltimore {:name "Baltimore" :lat 39.311788 :lon -76.424362}
+ :Billings {:name "Billings" :lat 45.786667 :lon -108.537222}
+ :Birmingham {:name "Birmingham" :lat 52.483056 :lon -1.893611}
+ :Boston {:name "Boston" :lat 42.358056 :lon -71.063611}
+ :Buffalo {:name "Buffalo" :lat 42.904722 :lon -78.849444}
+ :Butte {:name "Butte" :lat 46.006389 :lon -112.529722}
+ :Casper {:name "Casper" :lat 42.834722 :lon -106.325}
+ :Charleston {:name "Charleston" :lat 32.783333 :lon -79.933333}
+ :Charlotte {:name "Charlotte" :lat 35.226944 :lon -80.843333}
+ :Chattanooga {:name "Chattanooga" :lat 35.045556 :lon -85.267222}
+ :Chicago {:name "Chicago" :lat 41.881944 :lon -87.627778}
+ :Cincinnati {:name "Cincinnati" :lat 39.1 :lon -84.516667}
+ :Cleveland {:name "Cleveland" :lat 41.482222 :lon -81.669722}
+ :Columbus {:name "Columbus" :lat 39.983333 :lon -82.983333}
+ :Dallas {:name "Dallas" :lat 32.766070 :lon -96.732521}
+ :Denver {:name "Denver" :lat 39.739167 :lon -104.984722}
+ :Des-Moines {:name "Des Moines" :lat 41.590833 :lon -93.620833}
+ :Detroit {:name "Detroit" :lat 42.331389 :lon -83.045833}
+ :El-Paso {:name "El Paso" :lat 31.790278 :lon -106.423333}
+ :Fargo {:name "Fargo" :lat 46.877222 :lon -96.789444}
+ :Fort-Worth {:name "Fort Worth" :lat 32.661326 :lon -97.780723}
+ :Houston {:name "Houston" :lat 29.762778 :lon -95.383056}
+ :Indianapolis {:name "Indianapolis" :lat 39.791 :lon -86.148}
+ :Jacksonville {:name "Jacksonville" :lat 30.336944 :lon -81.661389}
+ :Kansas-City {:name "Kansas City" :lat 39.1 :lon -94.58}
+ :Knoxville {:name "Knoxville" :lat 35.972778 :lon -83.942222}
+ :Las-Vegas {:name "Las Vegas" :lat 36.175 :lon -115.136389}
+ :Little-Rock {:name "Little Rock" :lat 34.736111 :lon -92.331111}
+ :Los-Angeles {:name "Los Angeles" :lat 34.05 :lon -118.25}
+ :Louisville {:name "Louisville" :lat 38.25 :lon -85.766667}
+ :Memphis {:name "Memphis" :lat 35.117365 :lon -89.971068}
+ :Miami {:name "Miami" :lat 25.787676 :lon -80.224145}
+ :Milwaukee {:name "Milwaukee" :lat 43.05 :lon -87.95}
+ :Minneapolis {:name "Minneapolis" :lat 45.184052 :lon -93.942612}
+ :Mobile {:name "Mobile" :lat 30.694444 :lon -88.043056}
+ :Nashville {:name "Nashville" :lat 36.166667 :lon -86.783333}
+ :New-Orleans {:name "New Orleans" :lat 29.966667 :lon -90.05}
+ :New-York {:name "New York" :lat 40.67 :lon -73.94}
+ :Norfolk {:name "Norfolk" :lat 36.916667 :lon -76.2}
+ :Oakland {:name "Oakland" :lat 37.960975 :lon -121.865691}
+ :Oklahoma-City {:name "Oklahoma City" :lat 35.482222 :lon -97.535}
+ :Omaha {:name "Omaha" :lat 41.25 :lon -96}
+ :Philadelphia {:name "Philadelphia" :lat 39.95 :lon -75.17}
+ :Phoenix {:name "Phoenix" :lat 33.45 :lon -112.066667}
+ :Pittsburgh {:name "Pittsburgh" :lat 40.441667 :lon -80}
+ :Pocatello {:name "Pocatello" :lat 42.875222 :lon -112.447278}
+ :Portland-Maine {:name "Portland" :lat 43.666667 :lon -70.266667}
+ :Portland-Oregon {:name "Portland" :lat 45.52 :lon -122.681944}
+ :Pueblo {:name "Pueblo" :lat 38.266944 :lon -104.620278}
+ :Rapid-City {:name "Rapid City" :lat 44.076 :lon -103.228}
+ :Reno {:name "Reno" :lat 39.527222 :lon -119.821944}
+ :Richmond {:name "Richmond" :lat 37.540972 :lon -77.432889}
+ :Sacramento {:name "Sacramento" :lat 38.776538 :lon -121.424156}
+ :Salt-Lake-City {:name "Salt Lake City" :lat 40.75 :lon -111.883333}
+ :San-Antonio {:name "San Antonio" :lat 29.416667 :lon -98.5}
+ :San-Diego {:name "San Diego" :lat 32.715 :lon -117.1625}
+ :San-Francisco {:name "San Francisco" :lat 37.441367 :lon -122.803391}
+ :Seattle {:name "Seattle" :lat 47.609722 :lon -122.333056}
+ :Shreveport {:name "Shreveport" :lat 32.468056 :lon -93.921111}
+ :Spokane {:name "Spokane" :lat 47.658889 :lon -117.425}
+ :St-Louis {:name "St. Louis" :lat 38.627222 :lon -90.197778}
+ :St-Paul {:name "St. Paul" :lat 45.2430 :lon -92.6761}
+ :Tampa {:name "Tampa" :lat 27.971 :lon -82.465}
+ :Tucumcari {:name "Tucumcari" :lat 35.169444 :lon -103.725556}
+ :Washington {:name "Washington" :lat 38.730621 :lon -77.285942}}
