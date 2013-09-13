@@ -1,6 +1,6 @@
 {:Albany {:lat 42.6525 :lon -73.757222}
  :Atlanta {:lat 33.755 :lon -84.39}
- :Baltimore {:lat 39.283333 :lon -76.616667}
+ :Baltimore {:lat 39.311788 :lon -76.424362}
  :Billings {:lat 45.786667 :lon -108.537222}
  :Birmingham {:lat 52.483056 :lon -1.893611}
  :Boston {:lat 42.358056 :lon -71.063611}
@@ -14,13 +14,13 @@
  :Cincinnati {:lat 39.1 :lon -84.516667}
  :Cleveland {:lat 41.482222 :lon -81.669722}
  :Columbus {:lat 39.983333 :lon -82.983333}
- :Dallas {:lat 32.775833 :lon -96.796667}
+ :Dallas {:lat 32.766070 :lon -96.732521}
  :Denver {:lat 39.739167 :lon -104.984722}
  :Des-Moines {:lat 41.590833 :lon -93.620833}
  :Detroit {:lat 42.331389 :lon -83.045833}
  :El-Paso {:lat 31.790278 :lon -106.423333}
  :Fargo {:lat 46.877222 :lon -96.789444}
- :Fort-Worth {:lat 32.757358 :lon -97.333181}
+ :Fort-Worth {:lat 32.661326 :lon -97.780723}
  :Houston {:lat 29.762778 :lon -95.383056}
  :Indianapolis {:lat 39.791 :lon -86.148}
  :Jacksonville {:lat 30.336944 :lon -81.661389}
@@ -33,13 +33,13 @@
  :Memphis {:lat 35.117365 :lon -89.971068}
  :Miami {:lat 25.787676 :lon -80.224145}
  :Milwaukee {:lat 43.05 :lon -87.95}
- :Minneapolis {:lat 44.983333 :lon -93.266667}
+ :Minneapolis {:lat 45.184052 :lon -93.942612}
  :Mobile {:lat 30.694444 :lon -88.043056}
  :Nashville {:lat 36.166667 :lon -86.783333}
  :New-Orleans {:lat 29.966667 :lon -90.05}
  :New-York {:lat 40.67 :lon -73.94}
  :Norfolk {:lat 36.916667 :lon -76.2}
- :Oakland {:lat 37.804444 :lon -122.270833}
+ :Oakland {:lat 37.960975 :lon -121.865691}
  :Oklahoma-City {:lat 35.482222 :lon -97.535}
  :Omaha {:lat 41.25 :lon -96}
  :Philadelphia {:lat 39.95 :lon -75.17}
@@ -52,16 +52,16 @@
  :Rapid-City {:lat 44.076 :lon -103.228}
  :Reno {:lat 39.527222 :lon -119.821944}
  :Richmond {:lat 37.540972 :lon -77.432889}
- :Sacramento {:lat 38.555556 :lon -121.468889}
+ :Sacramento {:lat 38.776538 :lon -121.424156}
  :Salt-Lake-City {:lat 40.75 :lon -111.883333}
  :San-Antonio {:lat 29.416667 :lon -98.5}
  :San-Diego {:lat 32.715 :lon -117.1625}
- :San-Francisco {:lat 37.783333 :lon -122.416667}
+ :San-Francisco {:lat 37.441367 :lon -122.803391}
  :Seattle {:lat 47.609722 :lon -122.333056}
  :Shreveport {:lat 32.468056 :lon -93.921111}
  :Spokane {:lat 47.658889 :lon -117.425}
  :St-Louis {:lat 38.627222 :lon -90.197778}
- :St-Paul {:lat 44.9441 :lon -93.0852}
+ :St-Paul {:lat 45.2430 :lon -92.6761}
  :Tampa {:lat 27.971 :lon -82.465}
  :Tucumcari {:lat 35.169444 :lon -103.725556}
- :Washington {:lat 38.895111 :lon -77.036667}}
+ :Washington {:lat 38.730621 :lon -77.285942}}

@@ -38,11 +38,10 @@
       [:use {:attr {:xlink:href "#land"}}])))
 
 (defn draw-cities [graph cities]
-  (doseq [[city loc] cities]
-    (.log js/console city (projection [(:lon loc) (:lat loc)])))
   (plot/bind! graph ".city" (seq cities)
-              [:g {:attr {:transform #(let [loc (second %)]
-                                        (apply plot/translate (projection [(:lon loc) (:lat loc)])))}}
+              [:g {:attr {:class "city"
+                          :transform #(let [{:keys [lat lon]} (second %)]
+                                        (apply plot/translate (projection [lon lat])))}}
                [:circle {:attr {:fill "steelblue"
                                 :stroke "white"
                                 :stroke-width 2
@@ -50,6 +49,14 @@
                                 :cx 0
                                 :cy 0
                                 :data-name first}}]]))
+
+(defn draggable! [sel]
+  (let [drag #(this-as this
+                       (plot/configure! (.select d3 this)
+                                        {:attr {:transform (plot/translate (-> d3 :event :x)
+                                                                           (-> d3 :event :y))}}))]
+    (.call sel
+           (-> d3 :behavior .drag (.on "drag" drag)))))
 
 (go
   (let [size {:width 960 :height 600}
