@@ -30776,75 +30776,139 @@ goog.require("cljs.core");
 goog.require("cljs.core.async");
 goog.require("strokes");
 goog.require("goog.net.XhrIo");
+goog.require("cljs.reader");
 goog.require("baron.plot");
 goog.require("strokes");
 goog.require("cljs.core.async");
-baron.core.get_json = function get_json(path) {
+baron.core.fetch = function fetch(parser, path) {
   var ch = cljs.core.async.chan.call(null);
   goog.net.XhrIo.send(path, function(event) {
-    cljs.core.async.put_BANG_.call(null, ch, JSON.parse((new cljs.core.Keyword("\ufdd0:target")).call(null, event).getResponseText()));
+    cljs.core.async.put_BANG_.call(null, ch, parser.call(null, (new cljs.core.Keyword("\ufdd0:target")).call(null, event).getResponseText()));
     return cljs.core.async.close_BANG_.call(null, ch)
   });
   return ch
 };
-var c__5404__auto___9309 = cljs.core.async.chan.call(null, 1);
+baron.core.projection = (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3).azimuthalEqualArea().scale(baron.core.width).translate(cljs.core.PersistentVector.fromArray([33.5, 262.5], true)).rotate(cljs.core.PersistentVector.fromArray([100, -45], true)).center(cljs.core.PersistentVector.fromArray([-17.6076, -4.7913], true)).scale(1297);
+baron.core.draw_usa = function draw_usa(graph, p__21360, border) {
+  var map__21362 = p__21360;
+  var map__21362__$1 = cljs.core.seq_QMARK_.call(null, map__21362) ? cljs.core.apply.call(null, cljs.core.hash_map, map__21362) : map__21362;
+  var height = cljs.core.get.call(null, map__21362__$1, "\ufdd0:height");
+  var width = cljs.core.get.call(null, map__21362__$1, "\ufdd0:width");
+  return baron.plot.append_BANG_.call(null, graph, cljs.core.PersistentVector.fromArray(["\ufdd0:defs", cljs.core.ObjMap.EMPTY, cljs.core.PersistentVector.fromArray(["\ufdd0:path", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:datum", topojson.feature(border, (new cljs.core.Keyword("\ufdd0:land")).call(null, (new cljs.core.Keyword("\ufdd0:objects")).call(null, border))), "\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:id", "land", "\ufdd0:d", (new cljs.core.Keyword("\ufdd0:geo")).call(null, 
+  strokes.d3).path().projection(baron.core.projection)], true)], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:clipPath", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:id", "clip"], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:use", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:xlink:href", "#land"], true)], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:image", 
+  cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:clip-path", "url(#clip)", "\ufdd0:xlink:href", "/resources/public/img/shaded-relief.png", "\ufdd0:width", width, "\ufdd0:height", height], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:use", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:xlink:href", "#land"], true)], true)], true))
+};
+baron.core.draw_cities = function draw_cities(graph, cities) {
+  var seq__21370_21376 = cljs.core.seq.call(null, cities);
+  var chunk__21371_21377 = null;
+  var count__21372_21378 = 0;
+  var i__21373_21379 = 0;
+  while(true) {
+    if(i__21373_21379 < count__21372_21378) {
+      var vec__21374_21380 = cljs.core._nth.call(null, chunk__21371_21377, i__21373_21379);
+      var city_21381 = cljs.core.nth.call(null, vec__21374_21380, 0, null);
+      var loc_21382 = cljs.core.nth.call(null, vec__21374_21380, 1, null);
+      console.log(city_21381, baron.core.projection.call(null, cljs.core.PersistentVector.fromArray([(new cljs.core.Keyword("\ufdd0:lon")).call(null, loc_21382), (new cljs.core.Keyword("\ufdd0:lat")).call(null, loc_21382)], true)));
+      var G__21383 = seq__21370_21376;
+      var G__21384 = chunk__21371_21377;
+      var G__21385 = count__21372_21378;
+      var G__21386 = i__21373_21379 + 1;
+      seq__21370_21376 = G__21383;
+      chunk__21371_21377 = G__21384;
+      count__21372_21378 = G__21385;
+      i__21373_21379 = G__21386;
+      continue
+    }else {
+      var temp__4092__auto___21387 = cljs.core.seq.call(null, seq__21370_21376);
+      if(temp__4092__auto___21387) {
+        var seq__21370_21388__$1 = temp__4092__auto___21387;
+        if(cljs.core.chunked_seq_QMARK_.call(null, seq__21370_21388__$1)) {
+          var c__3073__auto___21389 = cljs.core.chunk_first.call(null, seq__21370_21388__$1);
+          var G__21390 = cljs.core.chunk_rest.call(null, seq__21370_21388__$1);
+          var G__21391 = c__3073__auto___21389;
+          var G__21392 = cljs.core.count.call(null, c__3073__auto___21389);
+          var G__21393 = 0;
+          seq__21370_21376 = G__21390;
+          chunk__21371_21377 = G__21391;
+          count__21372_21378 = G__21392;
+          i__21373_21379 = G__21393;
+          continue
+        }else {
+          var vec__21375_21394 = cljs.core.first.call(null, seq__21370_21388__$1);
+          var city_21395 = cljs.core.nth.call(null, vec__21375_21394, 0, null);
+          var loc_21396 = cljs.core.nth.call(null, vec__21375_21394, 1, null);
+          console.log(city_21395, baron.core.projection.call(null, cljs.core.PersistentVector.fromArray([(new cljs.core.Keyword("\ufdd0:lon")).call(null, loc_21396), (new cljs.core.Keyword("\ufdd0:lat")).call(null, loc_21396)], true)));
+          var G__21397 = cljs.core.next.call(null, seq__21370_21388__$1);
+          var G__21398 = null;
+          var G__21399 = 0;
+          var G__21400 = 0;
+          seq__21370_21376 = G__21397;
+          chunk__21371_21377 = G__21398;
+          count__21372_21378 = G__21399;
+          i__21373_21379 = G__21400;
+          continue
+        }
+      }else {
+      }
+    }
+    break
+  }
+  return baron.plot.bind_BANG_.call(null, graph, ".city", cljs.core.seq.call(null, cities), cljs.core.PersistentVector.fromArray(["\ufdd0:g", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:transform", function(p1__21359_SHARP_) {
+    var loc = cljs.core.second.call(null, p1__21359_SHARP_);
+    return cljs.core.apply.call(null, baron.plot.translate, baron.core.projection.call(null, cljs.core.PersistentVector.fromArray([(new cljs.core.Keyword("\ufdd0:lon")).call(null, loc), (new cljs.core.Keyword("\ufdd0:lat")).call(null, loc)], true)))
+  }], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:circle", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:fill", "steelblue", "\ufdd0:stroke", "white", "\ufdd0:stroke-width", 2, "\ufdd0:r", 10, "\ufdd0:cx", 0, "\ufdd0:cy", 0, "\ufdd0:data-name", cljs.core.first], true)], true)], true)], true))
+};
+var c__5404__auto___21421 = cljs.core.async.chan.call(null, 1);
 cljs.core.async.impl.dispatch.run.call(null, function() {
   var f__5405__auto__ = function() {
-    var switch__4533__auto__ = function(state_9303) {
-      var state_val_9304 = state_9303[1];
-      if(state_val_9304 === 2) {
-        var inst_9264 = state_9303[5];
-        var inst_9267 = state_9303[2];
-        var inst_9268 = cljs.core.hash_map.call(null);
-        var inst_9269 = (new cljs.core.Keyword("\ufdd0:objects")).call(null, inst_9267);
-        var inst_9270 = (new cljs.core.Keyword("\ufdd0:land")).call(null, inst_9269);
-        var inst_9271 = topojson.feature(inst_9267, inst_9270);
-        var inst_9272 = (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3);
-        var inst_9273 = inst_9272.path();
-        var inst_9274 = (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3);
-        var inst_9275 = inst_9274.azimuthalEqualArea();
-        var inst_9276 = inst_9275.scale(960);
-        var inst_9277 = cljs.core.vector.call(null, 33.5, 262.5);
-        var inst_9278 = inst_9276.translate(inst_9277);
-        var inst_9279 = cljs.core.vector.call(null, 100, -45);
-        var inst_9280 = inst_9278.rotate(inst_9279);
-        var inst_9281 = cljs.core.vector.call(null, -17.6076, -4.7913);
-        var inst_9282 = inst_9280.center(inst_9281);
-        var inst_9283 = inst_9282.scale(1297);
-        var inst_9284 = inst_9273.projection(inst_9283);
-        var inst_9285 = cljs.core.hash_map.call(null, "\ufdd0:id", "land", "\ufdd0:d", inst_9284);
-        var inst_9286 = cljs.core.hash_map.call(null, "\ufdd0:datum", inst_9271, "\ufdd0:attr", inst_9285);
-        var inst_9287 = cljs.core.vector.call(null, "\ufdd0:path", inst_9286);
-        var inst_9288 = cljs.core.vector.call(null, "\ufdd0:defs", inst_9268, inst_9287);
-        var inst_9289 = cljs.core.hash_map.call(null, "\ufdd0:id", "clip");
-        var inst_9290 = cljs.core.hash_map.call(null, "\ufdd0:attr", inst_9289);
-        var inst_9291 = cljs.core.hash_map.call(null, "\ufdd0:xlink:href", "#land");
-        var inst_9292 = cljs.core.hash_map.call(null, "\ufdd0:attr", inst_9291);
-        var inst_9293 = cljs.core.vector.call(null, "\ufdd0:use", inst_9292);
-        var inst_9294 = cljs.core.vector.call(null, "\ufdd0:clipPath", inst_9290, inst_9293);
-        var inst_9295 = cljs.core.hash_map.call(null, "\ufdd0:clip-path", "url(#clip)", "\ufdd0:xlink:href", "/resources/public/img/shaded-relief.png", "\ufdd0:width", 960, "\ufdd0:height", 600);
-        var inst_9296 = cljs.core.hash_map.call(null, "\ufdd0:attr", inst_9295);
-        var inst_9297 = cljs.core.vector.call(null, "\ufdd0:image", inst_9296);
-        var inst_9298 = cljs.core.hash_map.call(null, "\ufdd0:xlink:href", "#land");
-        var inst_9299 = cljs.core.hash_map.call(null, "\ufdd0:attr", inst_9298);
-        var inst_9300 = cljs.core.vector.call(null, "\ufdd0:use", inst_9299);
-        var inst_9301 = baron.plot.append_BANG_.call(null, inst_9264, inst_9288, inst_9294, inst_9297, inst_9300);
-        var state_9303__$1 = state_9303;
-        return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_9303__$1, inst_9301)
+    var switch__4533__auto__ = function(state_21414) {
+      var state_val_21415 = state_21414[1];
+      if(state_val_21415 === 3) {
+        var inst_21403 = state_21414[5];
+        var inst_21411 = state_21414[2];
+        var inst_21412 = baron.core.draw_cities.call(null, inst_21403, inst_21411);
+        var state_21414__$1 = state_21414;
+        return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_21414__$1, inst_21412)
       }else {
-        if(state_val_9304 === 1) {
-          var inst_9262 = strokes.d3.select("#map");
-          var inst_9263 = cljs.core.hash_map.call(null, "\ufdd0:width", 960, "\ufdd0:height", 600);
-          var inst_9264 = baron.plot.svg.call(null, inst_9262, inst_9263);
-          var inst_9265 = baron.core.get_json.call(null, "/data/us.json");
-          var state_9303__$1 = function() {
-            var statearr_9305 = state_9303;
-            statearr_9305[5] = inst_9264;
-            return statearr_9305
+        if(state_val_21415 === 2) {
+          var inst_21401 = state_21414[6];
+          var inst_21403 = state_21414[5];
+          var inst_21407 = state_21414[2];
+          var inst_21408 = baron.core.draw_usa.call(null, inst_21403, inst_21401, inst_21407);
+          var inst_21409 = baron.core.fetch.call(null, cljs.reader.read_string, "/data/cities.edn");
+          var state_21414__$1 = function() {
+            var statearr_21416 = state_21414;
+            statearr_21416[7] = inst_21408;
+            return statearr_21416
           }();
-          return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_9303__$1, 2, inst_9265)
+          return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_21414__$1, 3, inst_21409)
         }else {
-          return null
+          if(state_val_21415 === 1) {
+            var inst_21401 = state_21414[6];
+            var inst_21403 = state_21414[5];
+            var inst_21401__$1 = cljs.core.hash_map.call(null, "\ufdd0:width", 960, "\ufdd0:height", 600);
+            var inst_21402 = strokes.d3.select("#map");
+            var inst_21403__$1 = baron.plot.svg.call(null, inst_21402, inst_21401__$1);
+            var inst_21404 = function() {
+              var graph = inst_21403__$1;
+              var size = inst_21401__$1;
+              return function(graph, size, inst_21401, inst_21403, inst_21401__$1, inst_21402, inst_21403__$1, state_val_21415) {
+                return function(p1__21363_SHARP_) {
+                  return JSON.parse(p1__21363_SHARP_)
+                }
+              }(graph, size, inst_21401, inst_21403, inst_21401__$1, inst_21402, inst_21403__$1, state_val_21415)
+            }();
+            var inst_21405 = baron.core.fetch.call(null, inst_21404, "/data/us.json");
+            var state_21414__$1 = function() {
+              var statearr_21417 = state_21414;
+              statearr_21417[6] = inst_21401__$1;
+              statearr_21417[5] = inst_21403__$1;
+              return statearr_21417
+            }();
+            return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_21414__$1, 2, inst_21405)
+          }else {
+            return null
+          }
         }
       }
     };
@@ -30852,14 +30916,14 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
       return function() {
         var state_machine__4534__auto__ = null;
         var state_machine__4534__auto____0 = function() {
-          var statearr_9307 = new Array(6);
-          statearr_9307[0] = state_machine__4534__auto__;
-          statearr_9307[1] = 1;
-          return statearr_9307
+          var statearr_21419 = new Array(8);
+          statearr_21419[0] = state_machine__4534__auto__;
+          statearr_21419[1] = 1;
+          return statearr_21419
         };
-        var state_machine__4534__auto____1 = function(state_9303) {
+        var state_machine__4534__auto____1 = function(state_21414) {
           while(true) {
-            var result__4535__auto__ = switch__4533__auto__.call(null, state_9303);
+            var result__4535__auto__ = switch__4533__auto__.call(null, state_21414);
             if(result__4535__auto__ === "\ufdd0:recur") {
               continue
             }else {
@@ -30868,12 +30932,12 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
             break
           }
         };
-        state_machine__4534__auto__ = function(state_9303) {
+        state_machine__4534__auto__ = function(state_21414) {
           switch(arguments.length) {
             case 0:
               return state_machine__4534__auto____0.call(this);
             case 1:
-              return state_machine__4534__auto____1.call(this, state_9303)
+              return state_machine__4534__auto____1.call(this, state_21414)
           }
           throw new Error("Invalid arity: " + arguments.length);
         };
@@ -30884,9 +30948,9 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
     }(switch__4533__auto__)
   }();
   var state__5406__auto__ = function() {
-    var statearr_9308 = f__5405__auto__.call(null);
-    statearr_9308[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5404__auto___9309;
-    return statearr_9308
+    var statearr_21420 = f__5405__auto__.call(null);
+    statearr_21420[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5404__auto___21421;
+    return statearr_21420
   }();
   return cljs.core.async.impl.ioc_helpers.run_state_machine_wrapped.call(null, state__5406__auto__)
 });
