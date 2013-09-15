@@ -21,6 +21,9 @@
                   (.center [-17.6076 -4.7913])
                   (.scale 1297)))
 
+(def path (-> d3 :geo .path
+            (.projection projection)))
+
 (defn draw-usa! [graph {:keys [width height]} border]
   (plot/append! graph
                 [:g {:attr {:id "usa"
@@ -53,6 +56,9 @@
 (defn select-city! [city]
   (plot/configure! city {:attr {:fill "firebrick"}}))
 
+(defn deselect-city! [city]
+  (plot/configure! city {:attr {:fill "steelblue"}}))
+
 (defn draggable! [sel]
   (let [drag #(this-as this
                        (plot/configure! (.select d3 this)
@@ -61,13 +67,21 @@
     (.call sel
            (-> d3 :behavior .drag (.on "drag" drag)))))
 
-(defn click-chan [sel msg-type]
+(defn click-chan [sel]
   (let [ch (chan)]
     (.on sel "mousedown"
          #(this-as this
-                   (put! ch {:msg-type msg-type
-                             :target (.select d3 this)})))
+                   (put! ch (.select d3 this))))
     ch))
+
+(defn data [sel]
+  (-> sel first first :__data__))
+
+(defn id [sel]
+  (-> sel data first))
+
+(defn same-city? [a b]
+  (= (id a) (id b)))
 
 (go
   (let [size {:width 960 :height 600}
@@ -77,9 +91,30 @@
     (draw-usa! graph size (<! (fetch #(.parse js/JSON %) "/data/us.json")))
     (draw-cities! (.selectAll graph "#usa")
                   (<! (fetch reader/read-string "/data/cities.edn")))
-    (let [selections (click-chan (.selectAll d3 ".city circle") :selection)]
-      (go
-        (loop []
-          (let [city (<! selections)]
-            (select-city! (:target city)))
-          (recur))))))
+    (let [cities (click-chan (.selectAll d3 ".city circle"))]
+      (loop [endpoints []]
+        (case (count endpoints)
+          0 (recur [(select-city! (<! cities))])
+          1 (let [[start] endpoints
+                  end (<! cities)]
+              (if (same-city? start end)
+                (do
+                  (deselect-city! start)
+                  (recur []))
+                (do
+                  (select-city! end)
+                  (recur [start end]))))
+          2 (let [[start end] endpoints
+                  new-end (<! cities)]
+              (if (same-city? start new-end)
+                (do
+                  (deselect-city! start)
+                  (recur [end]))
+                (if (same-city? end new-end)
+                  (do
+                    (deselect-city! end)
+                    (recur [start]))
+                  (do
+                    (deselect-city! end)
+                    (select-city! new-end)
+                    (recur [start new-end]))))))))))
