@@ -27,7 +27,7 @@
 (defn draw-usa! [graph {:keys [width height]} border]
   (plot/append! graph
                 [:g {:attr {:id "usa"
-                            :transform "translate(20, 0) scale(0.95)"}}
+                            :transform "translate(28, 0) scale(0.95)"}}
                  [:defs {}
                   [:path {:datum (.feature js/topojson border (-> border :objects :land))
                           :attr {:id "land"
@@ -42,22 +42,19 @@
                  [:use {:attr {:xlink:href "#land"}}]]))
 
 (defn draw-cities! [graph cities]
-  (plot/bind! graph ".city" (seq cities)
-              [:g {:attr {:class "city"
-                          :transform #(let [{:keys [lon lat]} (second %)]
-                                        (apply plot/translate (projection [lon lat])))}}
-               [:circle {:attr {:fill "steelblue"
-                                :stroke "white"
-                                :stroke-width 2
-                                :r 10
-                                :cx 0
-                                :cy 0}}]]))
-
-(defn select-city! [city]
-  (plot/configure! city {:attr {:fill "firebrick"}}))
-
-(defn deselect-city! [city]
-  (plot/configure! city {:attr {:fill "steelblue"}}))
+  (-> graph
+    (plot/append! [:g {:attr {:class "cities-layer"}}])
+    (plot/bind! ".city" (seq cities)
+                [:g {:attr {:class "city"
+                            :transform #(let [{:keys [lon lat]} (second %)]
+                                          (apply plot/translate (projection [lon lat])))}}
+                 [:circle {:attr {:fill "steelblue"
+                                  :stroke "white"
+                                  :stroke-width 2
+                                  :r 10
+                                  :cx 0
+                                  :cy 0}}]]))
+  (plot/append! graph [:g {:attr {:class "text-layer"}}]))
 
 (defn draggable! [sel]
   (let [drag #(this-as this
@@ -87,12 +84,36 @@
 (defn same-city? [a b]
   (= (id a) (id b)))
 
+(defn select-city! [city]
+  (let [text (-> city data second :name)]
+    (plot/append! (.select d3 "#usa .text-layer")
+                  [:g {:attr {:class (str "text " (id city))
+                              :transform (apply plot/translate (projection (location city)))}}
+                   [:text {:text text
+                           :attr {:text-anchor "middle"
+                                  :stroke "white"
+                                  :stroke-width 3
+                                  :font-weight "bold"
+                                  :font-size "15px"
+                                  :dy -15}}]
+                   [:text {:text text
+                           :attr {:text-anchor "middle"
+                                  :fill "firebrick"
+                                  :font-weight "bold"
+                                  :font-size "15px"
+                                  :dy -15}}]])
+    (plot/configure! city {:attr {:fill "firebrick"}})))
+
+(defn deselect-city! [city]
+  (.remove (.selectAll d3 (str ".text." (id city))))
+  (plot/configure! city {:attr {:fill "steelblue"}}))
+
 (defn clear-routes! []
   (.remove (.selectAll d3 "#usa .route")))
 
 (defn show-path! [start end]
   (clear-routes!)
-  (plot/append! (.select d3 "#usa")
+  (plot/append! (.select d3 "#usa .cities-layer")
                 [:path {:datum {:type "LineString"
                                 :coordinates [(location start)
                                               (location end)]}
