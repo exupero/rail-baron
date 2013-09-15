@@ -36,7 +36,7 @@
                  [:clipPath {:attr {:id "clip"}}
                   [:use {:attr {:xlink:href "#land"}}]]
                  [:image {:attr {:clip-path "url(#clip)"
-                                 :xlink:href "/resources/public/img/shaded-relief.png"
+                                 :xlink:href "/rail-baron/resources/public/img/shaded-relief.png"
                                  :width width
                                  :height height}}]
                  [:use {:attr {:xlink:href "#land"}}]]))
@@ -157,10 +157,10 @@
         graph (-> d3
                 (.select "#map")
                 (plot/svg size))]
-    (draw-usa! graph size (<! (fetch #(.parse js/JSON %) "/data/us.json")))
+    (draw-usa! graph size (<! (fetch #(.parse js/JSON %) "/rail-baron/data/us.json")))
     (draw-cities! (.selectAll graph "#usa")
-                  (<! (fetch reader/read-string "/data/cities.edn")))
-    (let [payoffs (<! (fetch reader/read-string "/data/payoffs.edn"))
+                  (<! (fetch reader/read-string "/rail-baron/data/cities.edn")))
+    (let [payoffs (<! (fetch reader/read-string "/rail-baron/data/payoffs.edn"))
           cities (click-chan (.selectAll d3 ".city circle"))]
       (.hide (js/jQuery "#overlay"))
       (loop [endpoints []]
