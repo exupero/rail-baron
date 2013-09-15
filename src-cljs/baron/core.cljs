@@ -81,6 +81,10 @@
   (let [{:keys [lon lat]} (-> sel data second)]
     [lon lat]))
 
+(defn payoff [payoffs start end]
+  (get-in payoffs [(-> start id keyword)
+                   (-> end id keyword)]))
+
 (defn same-city? [a b]
   (= (id a) (id b)))
 
@@ -123,6 +127,31 @@
                                :fill "none"
                                :d path}}]))
 
+(defn clear-payoff! []
+  (.remove (.selectAll d3 "#usa .payoff")))
+
+(defn show-payoff! [payoff position]
+  (clear-payoff!)
+  (let [text ((.format d3 "$,") (* 1000 payoff))
+        {:keys [x y width height]} (-> d3 (.select "#usa .route") .node .getBBox)
+        position [(+ x (/ width 2)) (+ y (/ height 2))]]
+    (plot/append! (.select d3 "#usa .text-layer")
+                  [:g {:attr {:class "payoff"
+                              :transform (apply plot/translate position)}}
+                   [:text {:text text
+                           :attr {:font-size "25px"
+                                  :font-weight "bold"
+                                  :stroke "white"
+                                  :stroke-width 5
+                                  :dy 12
+                                  :text-anchor "middle"}}]
+                   [:text {:text text
+                           :attr {:font-size "25px"
+                                  :font-weight "bold"
+                                  :fill "firebrick"
+                                  :dy 12
+                                  :text-anchor "middle"}}]])))
+
 (go
   (let [size {:width 960 :height 600}
         graph (-> d3
@@ -131,7 +160,9 @@
     (draw-usa! graph size (<! (fetch #(.parse js/JSON %) "/data/us.json")))
     (draw-cities! (.selectAll graph "#usa")
                   (<! (fetch reader/read-string "/data/cities.edn")))
-    (let [cities (click-chan (.selectAll d3 ".city circle"))]
+    (let [payoffs (<! (fetch reader/read-string "/data/payoffs.edn"))
+          cities (click-chan (.selectAll d3 ".city circle"))]
+      (.hide (js/jQuery "#overlay"))
       (loop [endpoints []]
         (case (count endpoints)
           0 (recur [(select-city! (<! cities))])
@@ -144,6 +175,7 @@
                 (do
                   (select-city! end)
                   (show-path! start end)
+                  (show-payoff! (payoff payoffs start end))
                   (recur [start end]))))
           2 (let [[start end] endpoints
                   new-end (<! cities)]
@@ -151,14 +183,17 @@
                 (do
                   (deselect-city! start)
                   (clear-routes!)
+                  (clear-payoff!)
                   (recur [end]))
                 (if (same-city? end new-end)
                   (do
                     (deselect-city! end)
                     (clear-routes!)
+                    (clear-payoff!)
                     (recur [start]))
                   (do
                     (deselect-city! end)
                     (select-city! new-end)
                     (show-path! start new-end)
+                    (show-payoff! (payoff payoffs start new-end))
                     (recur [start new-end]))))))))))
