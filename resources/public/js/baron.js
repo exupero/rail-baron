@@ -30790,22 +30790,22 @@ baron.core.fetch = function fetch(parser, path) {
 };
 baron.core.projection = (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3).azimuthalEqualArea().scale(baron.core.width).translate(cljs.core.PersistentVector.fromArray([33.5, 262.5], true)).rotate(cljs.core.PersistentVector.fromArray([100, -45], true)).center(cljs.core.PersistentVector.fromArray([-17.6076, -4.7913], true)).scale(1297);
 baron.core.path = (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3).path().projection(baron.core.projection);
-baron.core.draw_usa_BANG_ = function draw_usa_BANG_(graph, p__74708, border) {
-  var map__74710 = p__74708;
-  var map__74710__$1 = cljs.core.seq_QMARK_.call(null, map__74710) ? cljs.core.apply.call(null, cljs.core.hash_map, map__74710) : map__74710;
-  var height = cljs.core.get.call(null, map__74710__$1, "\ufdd0:height");
-  var width = cljs.core.get.call(null, map__74710__$1, "\ufdd0:width");
+baron.core.draw_usa_BANG_ = function draw_usa_BANG_(graph, p__79791, border) {
+  var map__79793 = p__79791;
+  var map__79793__$1 = cljs.core.seq_QMARK_.call(null, map__79793) ? cljs.core.apply.call(null, cljs.core.hash_map, map__79793) : map__79793;
+  var height = cljs.core.get.call(null, map__79793__$1, "\ufdd0:height");
+  var width = cljs.core.get.call(null, map__79793__$1, "\ufdd0:width");
   return baron.plot.append_BANG_.call(null, graph, cljs.core.PersistentVector.fromArray(["\ufdd0:g", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:id", "usa", "\ufdd0:transform", "translate(20, 0) scale(0.95)"], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:defs", cljs.core.ObjMap.EMPTY, cljs.core.PersistentVector.fromArray(["\ufdd0:path", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:datum", topojson.feature(border, (new cljs.core.Keyword("\ufdd0:land")).call(null, 
   (new cljs.core.Keyword("\ufdd0:objects")).call(null, border))), "\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:id", "land", "\ufdd0:d", (new cljs.core.Keyword("\ufdd0:geo")).call(null, strokes.d3).path().projection(baron.core.projection)], true)], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:clipPath", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:id", "clip"], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:use", 
   cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:xlink:href", "#land"], true)], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:image", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:clip-path", "url(#clip)", "\ufdd0:xlink:href", "/resources/public/img/shaded-relief.png", "\ufdd0:width", width, "\ufdd0:height", height], true)], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:use", 
   cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:xlink:href", "#land"], true)], true)], true)], true))
 };
 baron.core.draw_cities_BANG_ = function draw_cities_BANG_(graph, cities) {
-  return baron.plot.bind_BANG_.call(null, graph, ".city", cljs.core.seq.call(null, cities), cljs.core.PersistentVector.fromArray(["\ufdd0:g", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:class", "city", "\ufdd0:transform", function(p1__74707_SHARP_) {
-    var map__74712 = cljs.core.second.call(null, p1__74707_SHARP_);
-    var map__74712__$1 = cljs.core.seq_QMARK_.call(null, map__74712) ? cljs.core.apply.call(null, cljs.core.hash_map, map__74712) : map__74712;
-    var lon = cljs.core.get.call(null, map__74712__$1, "\ufdd0:lon");
-    var lat = cljs.core.get.call(null, map__74712__$1, "\ufdd0:lat");
+  return baron.plot.bind_BANG_.call(null, graph, ".city", cljs.core.seq.call(null, cities), cljs.core.PersistentVector.fromArray(["\ufdd0:g", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:class", "city", "\ufdd0:transform", function(p1__79790_SHARP_) {
+    var map__79795 = cljs.core.second.call(null, p1__79790_SHARP_);
+    var map__79795__$1 = cljs.core.seq_QMARK_.call(null, map__79795) ? cljs.core.apply.call(null, cljs.core.hash_map, map__79795) : map__79795;
+    var lat = cljs.core.get.call(null, map__79795__$1, "\ufdd0:lat");
+    var lon = cljs.core.get.call(null, map__79795__$1, "\ufdd0:lon");
     return cljs.core.apply.call(null, baron.plot.translate, baron.core.projection.call(null, cljs.core.PersistentVector.fromArray([lon, lat], true)))
   }], true)], true), cljs.core.PersistentVector.fromArray(["\ufdd0:circle", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:fill", "steelblue", "\ufdd0:stroke", "white", "\ufdd0:stroke-width", 2, "\ufdd0:r", 10, "\ufdd0:cx", 0, "\ufdd0:cy", 0], true)], true)], true)], true))
 };
@@ -30836,92 +30836,107 @@ baron.core.data = function data(sel) {
 baron.core.id = function id(sel) {
   return cljs.core.first.call(null, baron.core.data.call(null, sel))
 };
+baron.core.location = function location(sel) {
+  var map__79797 = cljs.core.second.call(null, baron.core.data.call(null, sel));
+  var map__79797__$1 = cljs.core.seq_QMARK_.call(null, map__79797) ? cljs.core.apply.call(null, cljs.core.hash_map, map__79797) : map__79797;
+  var lat = cljs.core.get.call(null, map__79797__$1, "\ufdd0:lat");
+  var lon = cljs.core.get.call(null, map__79797__$1, "\ufdd0:lon");
+  return cljs.core.PersistentVector.fromArray([lon, lat], true)
+};
 baron.core.same_city_QMARK_ = function same_city_QMARK_(a, b) {
   return cljs.core._EQ_.call(null, baron.core.id.call(null, a), baron.core.id.call(null, b))
 };
-var c__5404__auto___74825 = cljs.core.async.chan.call(null, 1);
+baron.core.clear_routes_BANG_ = function clear_routes_BANG_() {
+  return strokes.d3.selectAll("#usa .route").remove()
+};
+baron.core.show_path_BANG_ = function show_path_BANG_(start, end) {
+  baron.core.clear_routes_BANG_.call(null);
+  return baron.plot.append_BANG_.call(null, strokes.d3.select("#usa"), cljs.core.PersistentVector.fromArray(["\ufdd0:path", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:datum", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:type", "LineString", "\ufdd0:coordinates", cljs.core.PersistentVector.fromArray([baron.core.location.call(null, start), baron.core.location.call(null, end)], true)], true), "\ufdd0:attr", cljs.core.PersistentArrayMap.fromArray(["\ufdd0:class", "route", "\ufdd0:stroke", "firebrick", 
+  "\ufdd0:stroke-width", 3, "\ufdd0:fill", "none", "\ufdd0:d", baron.core.path], true)], true)], true))
+};
+var c__5404__auto___79914 = cljs.core.async.chan.call(null, 1);
 cljs.core.async.impl.dispatch.run.call(null, function() {
   var f__5405__auto__ = function() {
-    var switch__4533__auto__ = function(state_74786) {
-      var state_val_74787 = state_74786[1];
-      if(state_val_74787 === 1) {
-        var inst_74716 = state_74786[5];
-        var inst_74714 = state_74786[6];
-        var inst_74714__$1 = cljs.core.hash_map.call(null, "\ufdd0:width", 960, "\ufdd0:height", 600);
-        var inst_74715 = strokes.d3.select("#map");
-        var inst_74716__$1 = baron.plot.svg.call(null, inst_74715, inst_74714__$1);
-        var inst_74717 = function() {
-          var graph = inst_74716__$1;
-          var size = inst_74714__$1;
-          return function(graph, size, inst_74716, inst_74714, inst_74714__$1, inst_74715, inst_74716__$1, state_val_74787) {
-            return function(p1__74713_SHARP_) {
-              return JSON.parse(p1__74713_SHARP_)
+    var switch__4533__auto__ = function(state_79875) {
+      var state_val_79876 = state_79875[1];
+      if(state_val_79876 === 1) {
+        var inst_79801 = state_79875[5];
+        var inst_79799 = state_79875[6];
+        var inst_79799__$1 = cljs.core.hash_map.call(null, "\ufdd0:width", 960, "\ufdd0:height", 600);
+        var inst_79800 = strokes.d3.select("#map");
+        var inst_79801__$1 = baron.plot.svg.call(null, inst_79800, inst_79799__$1);
+        var inst_79802 = function() {
+          var graph = inst_79801__$1;
+          var size = inst_79799__$1;
+          return function(graph, size, inst_79801, inst_79799, inst_79799__$1, inst_79800, inst_79801__$1, state_val_79876) {
+            return function(p1__79798_SHARP_) {
+              return JSON.parse(p1__79798_SHARP_)
             }
-          }(graph, size, inst_74716, inst_74714, inst_74714__$1, inst_74715, inst_74716__$1, state_val_74787)
+          }(graph, size, inst_79801, inst_79799, inst_79799__$1, inst_79800, inst_79801__$1, state_val_79876)
         }();
-        var inst_74718 = baron.core.fetch.call(null, inst_74717, "/data/us.json");
-        var state_74786__$1 = function() {
-          var statearr_74788 = state_74786;
-          statearr_74788[5] = inst_74716__$1;
-          statearr_74788[6] = inst_74714__$1;
-          return statearr_74788
+        var inst_79803 = baron.core.fetch.call(null, inst_79802, "/data/us.json");
+        var state_79875__$1 = function() {
+          var statearr_79877 = state_79875;
+          statearr_79877[5] = inst_79801__$1;
+          statearr_79877[6] = inst_79799__$1;
+          return statearr_79877
         }();
-        return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_74786__$1, 2, inst_74718)
+        return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_79875__$1, 2, inst_79803)
       }else {
-        if(state_val_74787 === 2) {
-          var inst_74716 = state_74786[5];
-          var inst_74714 = state_74786[6];
-          var inst_74720 = state_74786[2];
-          var inst_74721 = baron.core.draw_usa_BANG_.call(null, inst_74716, inst_74714, inst_74720);
-          var inst_74722 = inst_74716.selectAll("#usa");
-          var inst_74723 = baron.core.fetch.call(null, cljs.reader.read_string, "/data/cities.edn");
-          var state_74786__$1 = function() {
-            var statearr_74789 = state_74786;
-            statearr_74789[7] = inst_74722;
-            statearr_74789[8] = inst_74721;
-            return statearr_74789
+        if(state_val_79876 === 2) {
+          var inst_79801 = state_79875[5];
+          var inst_79799 = state_79875[6];
+          var inst_79805 = state_79875[2];
+          var inst_79806 = baron.core.draw_usa_BANG_.call(null, inst_79801, inst_79799, inst_79805);
+          var inst_79807 = inst_79801.selectAll("#usa");
+          var inst_79808 = baron.core.fetch.call(null, cljs.reader.read_string, "/data/cities.edn");
+          var state_79875__$1 = function() {
+            var statearr_79878 = state_79875;
+            statearr_79878[7] = inst_79806;
+            statearr_79878[8] = inst_79807;
+            return statearr_79878
           }();
-          return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_74786__$1, 3, inst_74723)
+          return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_79875__$1, 3, inst_79808)
         }else {
-          if(state_val_74787 === 3) {
-            var inst_74722 = state_74786[7];
-            var inst_74725 = state_74786[2];
-            var inst_74726 = baron.core.draw_cities_BANG_.call(null, inst_74722, inst_74725);
-            var inst_74727 = strokes.d3.selectAll(".city circle");
-            var inst_74728 = baron.core.click_chan.call(null, inst_74727);
-            var inst_74729 = cljs.core.vector.call(null);
-            var inst_74730 = inst_74729;
-            var state_74786__$1 = function() {
-              var statearr_74790 = state_74786;
-              statearr_74790[9] = inst_74728;
-              statearr_74790[10] = inst_74730;
-              statearr_74790[11] = inst_74726;
-              return statearr_74790
+          if(state_val_79876 === 3) {
+            var inst_79807 = state_79875[8];
+            var inst_79810 = state_79875[2];
+            var inst_79811 = baron.core.draw_cities_BANG_.call(null, inst_79807, inst_79810);
+            var inst_79812 = strokes.d3.selectAll(".city circle");
+            var inst_79813 = baron.core.click_chan.call(null, inst_79812);
+            var inst_79814 = cljs.core.vector.call(null);
+            var inst_79815 = inst_79814;
+            var state_79875__$1 = function() {
+              var statearr_79879 = state_79875;
+              statearr_79879[9] = inst_79811;
+              statearr_79879[10] = inst_79813;
+              statearr_79879[11] = inst_79815;
+              return statearr_79879
             }();
-            var statearr_74791_74826 = state_74786__$1;
-            statearr_74791_74826[2] = null;
-            statearr_74791_74826[1] = 4;
+            var statearr_79880_79915 = state_79875__$1;
+            statearr_79880_79915[2] = null;
+            statearr_79880_79915[1] = 4;
             return"\ufdd0:recur"
           }else {
-            if(state_val_74787 === 4) {
-              var inst_74730 = state_74786[10];
-              var inst_74780 = cljs.core.count.call(null, inst_74730);
-              var state_74786__$1 = state_74786;
-              var G__74792_74827 = inst_74780;
-              if(cljs.core._EQ_.call(null, 2, G__74792_74827)) {
-                var statearr_74793_74828 = state_74786__$1;
-                statearr_74793_74828[1] = 14
+            if(state_val_79876 === 4) {
+              var inst_79815 = state_79875[11];
+              var inst_79869 = cljs.core.count.call(null, inst_79815);
+              var state_79875__$1 = state_79875;
+              var G__79881_79916 = inst_79869;
+              if(cljs.core._EQ_.call(null, 2, G__79881_79916)) {
+                var statearr_79882_79917 = state_79875__$1;
+                statearr_79882_79917[1] = 14
               }else {
-                if(cljs.core._EQ_.call(null, 1, G__74792_74827)) {
-                  var statearr_74794_74829 = state_74786__$1;
-                  statearr_74794_74829[1] = 9
+                if(cljs.core._EQ_.call(null, 1, G__79881_79916)) {
+                  var statearr_79883_79918 = state_79875__$1;
+                  statearr_79883_79918[1] = 9
                 }else {
-                  if(cljs.core._EQ_.call(null, 0, G__74792_74827)) {
-                    var statearr_74795_74830 = state_74786__$1;
-                    statearr_74795_74830[1] = 7
+                  if(cljs.core._EQ_.call(null, 0, G__79881_79916)) {
+                    var statearr_79884_79919 = state_79875__$1;
+                    statearr_79884_79919[1] = 7
                   }else {
                     if("\ufdd0:else") {
-                      throw new Error([cljs.core.str("No matching clause: "), cljs.core.str(inst_74780)].join(""));
+                      throw new Error([cljs.core.str("No matching clause: "), cljs.core.str(inst_79869)].join(""));
                     }else {
                     }
                   }
@@ -30929,224 +30944,232 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
               }
               return"\ufdd0:recur"
             }else {
-              if(state_val_74787 === 5) {
-                var inst_74784 = state_74786[2];
-                var state_74786__$1 = state_74786;
-                return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_74786__$1, inst_74784)
+              if(state_val_79876 === 5) {
+                var inst_79873 = state_79875[2];
+                var state_79875__$1 = state_79875;
+                return cljs.core.async.impl.ioc_helpers.return_chan.call(null, state_79875__$1, inst_79873)
               }else {
-                if(state_val_74787 === 6) {
-                  var inst_74782 = state_74786[2];
-                  var state_74786__$1 = state_74786;
-                  var statearr_74796_74831 = state_74786__$1;
-                  statearr_74796_74831[2] = inst_74782;
-                  statearr_74796_74831[1] = 5;
+                if(state_val_79876 === 6) {
+                  var inst_79871 = state_79875[2];
+                  var state_79875__$1 = state_79875;
+                  var statearr_79885_79920 = state_79875__$1;
+                  statearr_79885_79920[2] = inst_79871;
+                  statearr_79885_79920[1] = 5;
                   return"\ufdd0:recur"
                 }else {
-                  if(state_val_74787 === 7) {
-                    var inst_74728 = state_74786[9];
-                    var state_74786__$1 = state_74786;
-                    return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_74786__$1, 8, inst_74728)
+                  if(state_val_79876 === 7) {
+                    var inst_79813 = state_79875[10];
+                    var state_79875__$1 = state_79875;
+                    return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_79875__$1, 8, inst_79813)
                   }else {
-                    if(state_val_74787 === 8) {
-                      var inst_74733 = state_74786[2];
-                      var inst_74734 = baron.core.select_city_BANG_.call(null, inst_74733);
-                      var inst_74735 = cljs.core.vector.call(null, inst_74734);
-                      var inst_74730 = inst_74735;
-                      var state_74786__$1 = function() {
-                        var statearr_74797 = state_74786;
-                        statearr_74797[10] = inst_74730;
-                        return statearr_74797
+                    if(state_val_79876 === 8) {
+                      var inst_79818 = state_79875[2];
+                      var inst_79819 = baron.core.select_city_BANG_.call(null, inst_79818);
+                      var inst_79820 = cljs.core.vector.call(null, inst_79819);
+                      var inst_79815 = inst_79820;
+                      var state_79875__$1 = function() {
+                        var statearr_79886 = state_79875;
+                        statearr_79886[11] = inst_79815;
+                        return statearr_79886
                       }();
-                      var statearr_74798_74832 = state_74786__$1;
-                      statearr_74798_74832[2] = null;
-                      statearr_74798_74832[1] = 4;
+                      var statearr_79887_79921 = state_79875__$1;
+                      statearr_79887_79921[2] = null;
+                      statearr_79887_79921[1] = 4;
                       return"\ufdd0:recur"
                     }else {
-                      if(state_val_74787 === 9) {
-                        var inst_74728 = state_74786[9];
-                        var inst_74730 = state_74786[10];
-                        var inst_74739 = cljs.core.nth.call(null, inst_74730, 0, null);
-                        var state_74786__$1 = function() {
-                          var statearr_74799 = state_74786;
-                          statearr_74799[12] = inst_74739;
-                          return statearr_74799
+                      if(state_val_79876 === 9) {
+                        var inst_79813 = state_79875[10];
+                        var inst_79815 = state_79875[11];
+                        var inst_79824 = cljs.core.nth.call(null, inst_79815, 0, null);
+                        var state_79875__$1 = function() {
+                          var statearr_79888 = state_79875;
+                          statearr_79888[12] = inst_79824;
+                          return statearr_79888
                         }();
-                        return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_74786__$1, 10, inst_74728)
+                        return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_79875__$1, 10, inst_79813)
                       }else {
-                        if(state_val_74787 === 10) {
-                          var inst_74739 = state_74786[12];
-                          var inst_74741 = state_74786[13];
-                          var inst_74741__$1 = state_74786[2];
-                          var inst_74742 = baron.core.same_city_QMARK_.call(null, inst_74739, inst_74741__$1);
-                          var state_74786__$1 = function() {
-                            var statearr_74800 = state_74786;
-                            statearr_74800[13] = inst_74741__$1;
-                            return statearr_74800
+                        if(state_val_79876 === 10) {
+                          var inst_79826 = state_79875[13];
+                          var inst_79824 = state_79875[12];
+                          var inst_79826__$1 = state_79875[2];
+                          var inst_79827 = baron.core.same_city_QMARK_.call(null, inst_79824, inst_79826__$1);
+                          var state_79875__$1 = function() {
+                            var statearr_79889 = state_79875;
+                            statearr_79889[13] = inst_79826__$1;
+                            return statearr_79889
                           }();
-                          if(cljs.core.truth_(inst_74742)) {
-                            var statearr_74801_74833 = state_74786__$1;
-                            statearr_74801_74833[1] = 11
+                          if(cljs.core.truth_(inst_79827)) {
+                            var statearr_79890_79922 = state_79875__$1;
+                            statearr_79890_79922[1] = 11
                           }else {
-                            var statearr_74802_74834 = state_74786__$1;
-                            statearr_74802_74834[1] = 12
+                            var statearr_79891_79923 = state_79875__$1;
+                            statearr_79891_79923[1] = 12
                           }
                           return"\ufdd0:recur"
                         }else {
-                          if(state_val_74787 === 11) {
-                            var inst_74739 = state_74786[12];
-                            var inst_74744 = baron.core.deselect_city_BANG_.call(null, inst_74739);
-                            var inst_74745 = cljs.core.vector.call(null);
-                            var inst_74730 = inst_74745;
-                            var state_74786__$1 = function() {
-                              var statearr_74803 = state_74786;
-                              statearr_74803[14] = inst_74744;
-                              statearr_74803[10] = inst_74730;
-                              return statearr_74803
+                          if(state_val_79876 === 11) {
+                            var inst_79824 = state_79875[12];
+                            var inst_79829 = baron.core.deselect_city_BANG_.call(null, inst_79824);
+                            var inst_79830 = cljs.core.vector.call(null);
+                            var inst_79815 = inst_79830;
+                            var state_79875__$1 = function() {
+                              var statearr_79892 = state_79875;
+                              statearr_79892[14] = inst_79829;
+                              statearr_79892[11] = inst_79815;
+                              return statearr_79892
                             }();
-                            var statearr_74804_74835 = state_74786__$1;
-                            statearr_74804_74835[2] = null;
-                            statearr_74804_74835[1] = 4;
+                            var statearr_79893_79924 = state_79875__$1;
+                            statearr_79893_79924[2] = null;
+                            statearr_79893_79924[1] = 4;
                             return"\ufdd0:recur"
                           }else {
-                            if(state_val_74787 === 12) {
-                              var inst_74739 = state_74786[12];
-                              var inst_74741 = state_74786[13];
-                              var inst_74748 = baron.core.select_city_BANG_.call(null, inst_74741);
-                              var inst_74749 = cljs.core.vector.call(null, inst_74739, inst_74741);
-                              var inst_74730 = inst_74749;
-                              var state_74786__$1 = function() {
-                                var statearr_74805 = state_74786;
-                                statearr_74805[15] = inst_74748;
-                                statearr_74805[10] = inst_74730;
-                                return statearr_74805
+                            if(state_val_79876 === 12) {
+                              var inst_79826 = state_79875[13];
+                              var inst_79824 = state_79875[12];
+                              var inst_79833 = baron.core.select_city_BANG_.call(null, inst_79826);
+                              var inst_79834 = baron.core.show_path_BANG_.call(null, inst_79824, inst_79826);
+                              var inst_79835 = cljs.core.vector.call(null, inst_79824, inst_79826);
+                              var inst_79815 = inst_79835;
+                              var state_79875__$1 = function() {
+                                var statearr_79894 = state_79875;
+                                statearr_79894[15] = inst_79833;
+                                statearr_79894[16] = inst_79834;
+                                statearr_79894[11] = inst_79815;
+                                return statearr_79894
                               }();
-                              var statearr_74806_74836 = state_74786__$1;
-                              statearr_74806_74836[2] = null;
-                              statearr_74806_74836[1] = 4;
+                              var statearr_79895_79925 = state_79875__$1;
+                              statearr_79895_79925[2] = null;
+                              statearr_79895_79925[1] = 4;
                               return"\ufdd0:recur"
                             }else {
-                              if(state_val_74787 === 13) {
-                                var inst_74752 = state_74786[2];
-                                var state_74786__$1 = state_74786;
-                                var statearr_74807_74837 = state_74786__$1;
-                                statearr_74807_74837[2] = inst_74752;
-                                statearr_74807_74837[1] = 6;
+                              if(state_val_79876 === 13) {
+                                var inst_79838 = state_79875[2];
+                                var state_79875__$1 = state_79875;
+                                var statearr_79896_79926 = state_79875__$1;
+                                statearr_79896_79926[2] = inst_79838;
+                                statearr_79896_79926[1] = 6;
                                 return"\ufdd0:recur"
                               }else {
-                                if(state_val_74787 === 14) {
-                                  var inst_74728 = state_74786[9];
-                                  var inst_74730 = state_74786[10];
-                                  var inst_74755 = cljs.core.nth.call(null, inst_74730, 0, null);
-                                  var inst_74756 = cljs.core.nth.call(null, inst_74730, 1, null);
-                                  var state_74786__$1 = function() {
-                                    var statearr_74808 = state_74786;
-                                    statearr_74808[16] = inst_74755;
-                                    statearr_74808[17] = inst_74756;
-                                    return statearr_74808
+                                if(state_val_79876 === 14) {
+                                  var inst_79813 = state_79875[10];
+                                  var inst_79815 = state_79875[11];
+                                  var inst_79841 = cljs.core.nth.call(null, inst_79815, 0, null);
+                                  var inst_79842 = cljs.core.nth.call(null, inst_79815, 1, null);
+                                  var state_79875__$1 = function() {
+                                    var statearr_79897 = state_79875;
+                                    statearr_79897[17] = inst_79842;
+                                    statearr_79897[18] = inst_79841;
+                                    return statearr_79897
                                   }();
-                                  return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_74786__$1, 15, inst_74728)
+                                  return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, state_79875__$1, 15, inst_79813)
                                 }else {
-                                  if(state_val_74787 === 15) {
-                                    var inst_74755 = state_74786[16];
-                                    var inst_74758 = state_74786[18];
-                                    var inst_74758__$1 = state_74786[2];
-                                    var inst_74759 = baron.core.same_city_QMARK_.call(null, inst_74755, inst_74758__$1);
-                                    var state_74786__$1 = function() {
-                                      var statearr_74809 = state_74786;
-                                      statearr_74809[18] = inst_74758__$1;
-                                      return statearr_74809
+                                  if(state_val_79876 === 15) {
+                                    var inst_79844 = state_79875[19];
+                                    var inst_79841 = state_79875[18];
+                                    var inst_79844__$1 = state_79875[2];
+                                    var inst_79845 = baron.core.same_city_QMARK_.call(null, inst_79841, inst_79844__$1);
+                                    var state_79875__$1 = function() {
+                                      var statearr_79898 = state_79875;
+                                      statearr_79898[19] = inst_79844__$1;
+                                      return statearr_79898
                                     }();
-                                    if(cljs.core.truth_(inst_74759)) {
-                                      var statearr_74810_74838 = state_74786__$1;
-                                      statearr_74810_74838[1] = 16
+                                    if(cljs.core.truth_(inst_79845)) {
+                                      var statearr_79899_79927 = state_79875__$1;
+                                      statearr_79899_79927[1] = 16
                                     }else {
-                                      var statearr_74811_74839 = state_74786__$1;
-                                      statearr_74811_74839[1] = 17
+                                      var statearr_79900_79928 = state_79875__$1;
+                                      statearr_79900_79928[1] = 17
                                     }
                                     return"\ufdd0:recur"
                                   }else {
-                                    if(state_val_74787 === 16) {
-                                      var inst_74755 = state_74786[16];
-                                      var inst_74756 = state_74786[17];
-                                      var inst_74761 = baron.core.deselect_city_BANG_.call(null, inst_74755);
-                                      var inst_74762 = cljs.core.vector.call(null, inst_74756);
-                                      var inst_74730 = inst_74762;
-                                      var state_74786__$1 = function() {
-                                        var statearr_74812 = state_74786;
-                                        statearr_74812[19] = inst_74761;
-                                        statearr_74812[10] = inst_74730;
-                                        return statearr_74812
+                                    if(state_val_79876 === 16) {
+                                      var inst_79842 = state_79875[17];
+                                      var inst_79841 = state_79875[18];
+                                      var inst_79847 = baron.core.deselect_city_BANG_.call(null, inst_79841);
+                                      var inst_79848 = baron.core.clear_routes_BANG_.call(null);
+                                      var inst_79849 = cljs.core.vector.call(null, inst_79842);
+                                      var inst_79815 = inst_79849;
+                                      var state_79875__$1 = function() {
+                                        var statearr_79901 = state_79875;
+                                        statearr_79901[20] = inst_79848;
+                                        statearr_79901[21] = inst_79847;
+                                        statearr_79901[11] = inst_79815;
+                                        return statearr_79901
                                       }();
-                                      var statearr_74813_74840 = state_74786__$1;
-                                      statearr_74813_74840[2] = null;
-                                      statearr_74813_74840[1] = 4;
+                                      var statearr_79902_79929 = state_79875__$1;
+                                      statearr_79902_79929[2] = null;
+                                      statearr_79902_79929[1] = 4;
                                       return"\ufdd0:recur"
                                     }else {
-                                      if(state_val_74787 === 17) {
-                                        var inst_74756 = state_74786[17];
-                                        var inst_74758 = state_74786[18];
-                                        var inst_74765 = baron.core.same_city_QMARK_.call(null, inst_74756, inst_74758);
-                                        var state_74786__$1 = state_74786;
-                                        if(cljs.core.truth_(inst_74765)) {
-                                          var statearr_74814_74841 = state_74786__$1;
-                                          statearr_74814_74841[1] = 19
+                                      if(state_val_79876 === 17) {
+                                        var inst_79844 = state_79875[19];
+                                        var inst_79842 = state_79875[17];
+                                        var inst_79852 = baron.core.same_city_QMARK_.call(null, inst_79842, inst_79844);
+                                        var state_79875__$1 = state_79875;
+                                        if(cljs.core.truth_(inst_79852)) {
+                                          var statearr_79903_79930 = state_79875__$1;
+                                          statearr_79903_79930[1] = 19
                                         }else {
-                                          var statearr_74815_74842 = state_74786__$1;
-                                          statearr_74815_74842[1] = 20
+                                          var statearr_79904_79931 = state_79875__$1;
+                                          statearr_79904_79931[1] = 20
                                         }
                                         return"\ufdd0:recur"
                                       }else {
-                                        if(state_val_74787 === 18) {
-                                          var inst_74778 = state_74786[2];
-                                          var state_74786__$1 = state_74786;
-                                          var statearr_74816_74843 = state_74786__$1;
-                                          statearr_74816_74843[2] = inst_74778;
-                                          statearr_74816_74843[1] = 6;
+                                        if(state_val_79876 === 18) {
+                                          var inst_79867 = state_79875[2];
+                                          var state_79875__$1 = state_79875;
+                                          var statearr_79905_79932 = state_79875__$1;
+                                          statearr_79905_79932[2] = inst_79867;
+                                          statearr_79905_79932[1] = 6;
                                           return"\ufdd0:recur"
                                         }else {
-                                          if(state_val_74787 === 19) {
-                                            var inst_74755 = state_74786[16];
-                                            var inst_74756 = state_74786[17];
-                                            var inst_74767 = baron.core.deselect_city_BANG_.call(null, inst_74756);
-                                            var inst_74768 = cljs.core.vector.call(null, inst_74755);
-                                            var inst_74730 = inst_74768;
-                                            var state_74786__$1 = function() {
-                                              var statearr_74817 = state_74786;
-                                              statearr_74817[20] = inst_74767;
-                                              statearr_74817[10] = inst_74730;
-                                              return statearr_74817
+                                          if(state_val_79876 === 19) {
+                                            var inst_79842 = state_79875[17];
+                                            var inst_79841 = state_79875[18];
+                                            var inst_79854 = baron.core.deselect_city_BANG_.call(null, inst_79842);
+                                            var inst_79855 = baron.core.clear_routes_BANG_.call(null);
+                                            var inst_79856 = cljs.core.vector.call(null, inst_79841);
+                                            var inst_79815 = inst_79856;
+                                            var state_79875__$1 = function() {
+                                              var statearr_79906 = state_79875;
+                                              statearr_79906[22] = inst_79854;
+                                              statearr_79906[23] = inst_79855;
+                                              statearr_79906[11] = inst_79815;
+                                              return statearr_79906
                                             }();
-                                            var statearr_74818_74844 = state_74786__$1;
-                                            statearr_74818_74844[2] = null;
-                                            statearr_74818_74844[1] = 4;
+                                            var statearr_79907_79933 = state_79875__$1;
+                                            statearr_79907_79933[2] = null;
+                                            statearr_79907_79933[1] = 4;
                                             return"\ufdd0:recur"
                                           }else {
-                                            if(state_val_74787 === 20) {
-                                              var inst_74755 = state_74786[16];
-                                              var inst_74756 = state_74786[17];
-                                              var inst_74758 = state_74786[18];
-                                              var inst_74771 = baron.core.deselect_city_BANG_.call(null, inst_74756);
-                                              var inst_74772 = baron.core.select_city_BANG_.call(null, inst_74758);
-                                              var inst_74773 = cljs.core.vector.call(null, inst_74755, inst_74758);
-                                              var inst_74730 = inst_74773;
-                                              var state_74786__$1 = function() {
-                                                var statearr_74819 = state_74786;
-                                                statearr_74819[21] = inst_74771;
-                                                statearr_74819[22] = inst_74772;
-                                                statearr_74819[10] = inst_74730;
-                                                return statearr_74819
+                                            if(state_val_79876 === 20) {
+                                              var inst_79844 = state_79875[19];
+                                              var inst_79842 = state_79875[17];
+                                              var inst_79841 = state_79875[18];
+                                              var inst_79859 = baron.core.deselect_city_BANG_.call(null, inst_79842);
+                                              var inst_79860 = baron.core.select_city_BANG_.call(null, inst_79844);
+                                              var inst_79861 = baron.core.show_path_BANG_.call(null, inst_79841, inst_79844);
+                                              var inst_79862 = cljs.core.vector.call(null, inst_79841, inst_79844);
+                                              var inst_79815 = inst_79862;
+                                              var state_79875__$1 = function() {
+                                                var statearr_79908 = state_79875;
+                                                statearr_79908[24] = inst_79861;
+                                                statearr_79908[25] = inst_79860;
+                                                statearr_79908[26] = inst_79859;
+                                                statearr_79908[11] = inst_79815;
+                                                return statearr_79908
                                               }();
-                                              var statearr_74820_74845 = state_74786__$1;
-                                              statearr_74820_74845[2] = null;
-                                              statearr_74820_74845[1] = 4;
+                                              var statearr_79909_79934 = state_79875__$1;
+                                              statearr_79909_79934[2] = null;
+                                              statearr_79909_79934[1] = 4;
                                               return"\ufdd0:recur"
                                             }else {
-                                              if(state_val_74787 === 21) {
-                                                var inst_74776 = state_74786[2];
-                                                var state_74786__$1 = state_74786;
-                                                var statearr_74821_74846 = state_74786__$1;
-                                                statearr_74821_74846[2] = inst_74776;
-                                                statearr_74821_74846[1] = 18;
+                                              if(state_val_79876 === 21) {
+                                                var inst_79865 = state_79875[2];
+                                                var state_79875__$1 = state_79875;
+                                                var statearr_79910_79935 = state_79875__$1;
+                                                statearr_79910_79935[2] = inst_79865;
+                                                statearr_79910_79935[1] = 18;
                                                 return"\ufdd0:recur"
                                               }else {
                                                 return null
@@ -31176,14 +31199,14 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
       return function() {
         var state_machine__4534__auto__ = null;
         var state_machine__4534__auto____0 = function() {
-          var statearr_74823 = new Array(23);
-          statearr_74823[0] = state_machine__4534__auto__;
-          statearr_74823[1] = 1;
-          return statearr_74823
+          var statearr_79912 = new Array(27);
+          statearr_79912[0] = state_machine__4534__auto__;
+          statearr_79912[1] = 1;
+          return statearr_79912
         };
-        var state_machine__4534__auto____1 = function(state_74786) {
+        var state_machine__4534__auto____1 = function(state_79875) {
           while(true) {
-            var result__4535__auto__ = switch__4533__auto__.call(null, state_74786);
+            var result__4535__auto__ = switch__4533__auto__.call(null, state_79875);
             if(result__4535__auto__ === "\ufdd0:recur") {
               continue
             }else {
@@ -31192,12 +31215,12 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
             break
           }
         };
-        state_machine__4534__auto__ = function(state_74786) {
+        state_machine__4534__auto__ = function(state_79875) {
           switch(arguments.length) {
             case 0:
               return state_machine__4534__auto____0.call(this);
             case 1:
-              return state_machine__4534__auto____1.call(this, state_74786)
+              return state_machine__4534__auto____1.call(this, state_79875)
           }
           throw new Error("Invalid arity: " + arguments.length);
         };
@@ -31208,9 +31231,9 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
     }(switch__4533__auto__)
   }();
   var state__5406__auto__ = function() {
-    var statearr_74824 = f__5405__auto__.call(null);
-    statearr_74824[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5404__auto___74825;
-    return statearr_74824
+    var statearr_79913 = f__5405__auto__.call(null);
+    statearr_79913[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5404__auto___79914;
+    return statearr_79913
   }();
   return cljs.core.async.impl.ioc_helpers.run_state_machine_wrapped.call(null, state__5406__auto__)
 });

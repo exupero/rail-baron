@@ -44,7 +44,7 @@
 (defn draw-cities! [graph cities]
   (plot/bind! graph ".city" (seq cities)
               [:g {:attr {:class "city"
-                          :transform #(let [{:keys [lat lon]} (second %)]
+                          :transform #(let [{:keys [lon lat]} (second %)]
                                         (apply plot/translate (projection [lon lat])))}}
                [:circle {:attr {:fill "steelblue"
                                 :stroke "white"
@@ -80,8 +80,27 @@
 (defn id [sel]
   (-> sel data first))
 
+(defn location [sel]
+  (let [{:keys [lon lat]} (-> sel data second)]
+    [lon lat]))
+
 (defn same-city? [a b]
   (= (id a) (id b)))
+
+(defn clear-routes! []
+  (.remove (.selectAll d3 "#usa .route")))
+
+(defn show-path! [start end]
+  (clear-routes!)
+  (plot/append! (.select d3 "#usa")
+                [:path {:datum {:type "LineString"
+                                :coordinates [(location start)
+                                              (location end)]}
+                        :attr {:class "route"
+                               :stroke "firebrick"
+                               :stroke-width 3
+                               :fill "none"
+                               :d path}}]))
 
 (go
   (let [size {:width 960 :height 600}
@@ -103,18 +122,22 @@
                   (recur []))
                 (do
                   (select-city! end)
+                  (show-path! start end)
                   (recur [start end]))))
           2 (let [[start end] endpoints
                   new-end (<! cities)]
               (if (same-city? start new-end)
                 (do
                   (deselect-city! start)
+                  (clear-routes!)
                   (recur [end]))
                 (if (same-city? end new-end)
                   (do
                     (deselect-city! end)
+                    (clear-routes!)
                     (recur [start]))
                   (do
                     (deselect-city! end)
                     (select-city! new-end)
+                    (show-path! start new-end)
                     (recur [start new-end]))))))))))
