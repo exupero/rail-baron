@@ -15,7 +15,7 @@
     ch))
 
 (def projection (-> d3 :geo .azimuthalEqualArea
-                  (.scale width)
+                  (.scale 960)
                   (.translate [33.5 262.5])
                   (.rotate [100 -45])
                   (.center [-17.6076 -4.7913])
@@ -130,7 +130,7 @@
 (defn clear-payoff! []
   (.remove (.selectAll d3 "#usa .payoff")))
 
-(defn show-payoff! [payoff position]
+(defn show-payoff! [payoff]
   (clear-payoff!)
   (let [text ((.format d3 "$,") (* 1000 payoff))
         {:keys [x y width height]} (-> d3 (.select "#usa .route") .node .getBBox)

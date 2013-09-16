@@ -1,9 +1,10 @@
 (ns baron.plot
-  (:require [strokes :refer [d3]]))
+  (:require [cljs.core :as core]
+            [strokes :refer [d3]]))
 
 (strokes/bootstrap)
 
-(let [strkey #(if (keyword? %) (name %) %)]
+(let [strkey #(if (core/keyword? %) (name %) %)]
   (extend-type object
     ILookup
     (-lookup
