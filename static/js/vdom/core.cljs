@@ -8,9 +8,11 @@
 
 (defn flatten-children [[head & tail]]
   (cond
-    (seq? head)    (concat head (flatten-children tail))
-    (nil? head)    (list)
-    :else          (concat (list head) (flatten-children tail))))
+    (and (nil? head)
+         (nil? tail)) (list)
+    (seq? head)       (concat head (flatten-children tail))
+    (nil? head)       (flatten-children tail)
+    :else             (concat (list head) (flatten-children tail))))
 
 (defn html-node [tag attrs children]
   (new js/VDOM.VHtml (name tag) (clj->js attrs) (clj->js children)))
@@ -45,26 +47,14 @@
     :else
     (svg-node tag attrs (map svg-tree (flatten-children children)))))
 
-(defn foldp [f init in]
-  (let [out (chan)]
-    (put! out init)
-    (go-loop [m init
-              v (<! in)]
-      (let [m2 (f m v)]
-        (put! out m2)
-        (recur m2 (<! in))))
-    out))
-
-(defn render! [views elem]
-  (go
-    (let [tree (atom (html-tree (<! views)))
-          root (atom (create @tree))
-          update (fn [t]
-                   (let [patches (diff @tree t)]
-                     (swap! root patch patches)
-                     (reset! tree t)))]
-      (.appendChild elem @root)
-      (loop [new-tree (<! views)]
+(defn renderer [elem]
+  (let [tree (atom (text-node ""))
+        root (atom (create @tree))]
+    (.appendChild elem @root)
+    (fn [view]
+      (let [new-tree (html-tree view)
+            patches (diff @tree new-tree)]
         (.requestAnimationFrame js/window
-          #(update (html-tree new-tree)))
-        (recur (<! views))))))
+          (fn []
+            (swap! root patch patches)
+            (reset! tree new-tree)))))))
