@@ -3,11 +3,8 @@
             [cljs.core.async :as async :refer [chan put! close!]]
             [cljs.core.match :refer-macros  [match]]
             [goog.net.XhrIo :as xhr]
-            [clojure.browser.repl :as repl]
             [vdom.elm :refer [foldp render!]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
-
-(defonce conn (repl/connect "http://localhost:9000/repl"))
 
 (enable-console-print!)
 
@@ -39,7 +36,16 @@
 
 (def format-money (.format js/d3 "$,"))
 
-(defn ui-country [{:keys [usa]} actions]
+(defn connection [a b]
+  (clj->js {:type "LineString"
+            :coordinates [(lon-lat a) (lon-lat b)]}))
+
+(defn half [[cx cy] [x y]]
+  (if (pos? (.atan2 js/Math (- y cy) (- x cx)))
+    "south"
+    "north"))
+
+(defn ui-country [model actions]
   (list
     [:clipPath {:id "clip"}
      [:use {"xlink:href" "#land"}]]
@@ -54,22 +60,14 @@
         :let [[x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onclick #(async/put! actions [:select city-key])}
+         :onmousedown #(async/put! actions [:select city-key])}
      [:circle {:r 10}]]))
 
-(defn ui-selected [{:keys [cities payoffs selected]} actions]
+(defn ui-connection [{:keys [cities selected]} actions]
   (if (= 2 (count selected))
-    (let [[a b] selected
-          a-coord (lon-lat (cities a))
-          b-coord (lon-lat (cities b))
-          connection (clj->js {:type "LineString" :coordinates [a-coord b-coord]})]
-      (list
-        [:path {:class "connection" :d (path connection)}]
-        (let [payoff (format-money (* 1000 (get-in payoffs [a b])))
-              [x y] (.centroid path connection)]
-          [:g {:transform (str "translate(" x "," y ")")}
-           [:text {:dy 7 :class "stroke"} payoff]
-           [:text {:dy 7} payoff]])))))
+    (let [[a b] selected]
+      [:path {:class "connection"
+              :d (path (connection (cities a) (cities b)))}])))
 
 (defn ui-selected-cities [{:keys [cities selected]} actions]
   (for [city-key selected
@@ -77,17 +75,27 @@
               [x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onclick #(async/put! actions [:deselect city-key])}
+         :onmousedown #(async/put! actions [:deselect city-key])}
      [:circle {:class "selected" :r 13}]]))
 
-(defn ui-text [{:keys [cities selected payoff]} actions]
-  (for [city-key selected
-        :let [{city :name :keys [lon lat]} (cities city-key)
-              [x y] (projection #js [lon lat])]]
-    [:g {:transform (str "translate(" x "," y ")")
-         :onclick #(async/put! actions [:deselect city-key])}
-     [:text {:dy 7 :class "stroke"} city]
-     [:text {:dy 7} city]]))
+(defn ui-text [{[a b] :selected :keys [cities payoffs]} actions]
+  (let [[cx cy :as centroid] (.centroid path (connection (cities a) (cities b)))]
+    (list
+      (for [city-key [a b]
+            :let [{city :name :keys [lon lat]} (cities city-key)
+                  [x y :as pos] (projection #js [lon lat])]]
+        [:g {:transform (str "translate(" x "," y ")"
+                             (case (half centroid pos)
+                               "north" "translate(0,-25)"
+                               "south" "translate(0,25)"))
+             :onclick #(async/put! actions [:deselect city-key])}
+         [:text {:dy 7 :class "stroke"} city]
+         [:text {:dy 7} city]])
+      (if (and a b)
+        (let [payoff (format-money (* 1000 (get-in payoffs [a b])))]
+          [:g {:transform (str "translate(" cx "," cy ")")}
+           [:text {:dy 7 :class "stroke"} payoff]
+           [:text {:dy 7} payoff]])))))
 
 (defn ui [actions]
   (fn [{:keys [usa] :as model}]
@@ -95,11 +103,11 @@
      [:svg {:width width :height height}
       [:defs {}
        [:path {:id "land"
-               :d (-> usa land-border path)}]]
-      [:g {:transform "scale(0.9) translate(40,0)"}
+               :d usa}]]
+      [:g {:transform "scale(0.95) translate(60,0)"}
        (ui-country model actions)
        (ui-cities model actions)
-       (ui-selected model actions)
+       (ui-connection model actions)
        (ui-selected-cities model actions)
        (ui-text model actions)]]]))
 
@@ -120,7 +128,7 @@
         usa-c (fetch #(.parse js/JSON %) "static/data/us.json")
         cities-c (fetch reader/read-string "static/data/cities.edn")
         payoffs-c (fetch reader/read-string "static/data/payoffs.edn")
-        initial-model {:usa (<! usa-c)
+        initial-model {:usa (-> (<! usa-c) land-border path)
                        :cities (<! cities-c)
                        :payoffs (<! payoffs-c)
                        :selected []}

@@ -5,40 +5,24 @@ goog.require('cljs.core.async');
 vdom.core.diff = VDOM.diff;
 vdom.core.patch = VDOM.patch;
 vdom.core.create = VDOM.create;
-vdom.core.flatten_children = (function vdom$core$flatten_children(p__38520){
-var vec__38522 = p__38520;
-var head = cljs.core.nth.call(null,vec__38522,(0),null);
-var tail = cljs.core.nthnext.call(null,vec__38522,(1));
-if(((head == null)) && ((tail == null))){
-return cljs.core.List.EMPTY;
-} else {
-if(cljs.core.seq_QMARK_.call(null,head)){
-return cljs.core.concat.call(null,head,vdom$core$flatten_children.call(null,tail));
-} else {
-if((head == null)){
-return vdom$core$flatten_children.call(null,tail);
-} else {
-return cljs.core.concat.call(null,cljs.core._conj.call(null,cljs.core.List.EMPTY,head),vdom$core$flatten_children.call(null,tail));
-
-}
-}
-}
+vdom.core.flatten_children = (function vdom$core$flatten_children(children){
+return cljs.core.remove.call(null,cljs.core.nil_QMARK_,cljs.core.remove.call(null,cljs.core.seq_QMARK_,cljs.core.tree_seq.call(null,cljs.core.seq_QMARK_,cljs.core.seq,children)));
 });
-vdom.core.html_node = (function vdom$core$html_node(tag,attrs,children){
+vdom.core.html_node = cljs.core.memoize.call(null,(function (tag,attrs,children){
 return (new VDOM.VHtml(cljs.core.name.call(null,tag),cljs.core.clj__GT_js.call(null,attrs),cljs.core.clj__GT_js.call(null,children)));
-});
-vdom.core.svg_node = (function vdom$core$svg_node(tag,attrs,children){
+}));
+vdom.core.svg_node = cljs.core.memoize.call(null,(function (tag,attrs,children){
 return (new VDOM.VSvg(cljs.core.name.call(null,tag),cljs.core.clj__GT_js.call(null,attrs),cljs.core.clj__GT_js.call(null,children)));
-});
-vdom.core.text_node = (function vdom$core$text_node(s){
+}));
+vdom.core.text_node = cljs.core.memoize.call(null,(function (s){
 return (new VDOM.VText(s));
-});
-vdom.core.html_tree = (function vdom$core$html_tree(p__38523){
-var vec__38525 = p__38523;
-var tag = cljs.core.nth.call(null,vec__38525,(0),null);
-var attrs = cljs.core.nth.call(null,vec__38525,(1),null);
-var children = cljs.core.nthnext.call(null,vec__38525,(2));
-var arg = vec__38525;
+}));
+vdom.core.html_tree = (function vdom$core$html_tree(p__23948){
+var vec__23950 = p__23948;
+var tag = cljs.core.nth.call(null,vec__23950,(0),null);
+var attrs = cljs.core.nth.call(null,vec__23950,(1),null);
+var children = cljs.core.nthnext.call(null,vec__23950,(2));
+var arg = vec__23950;
 if(typeof arg === 'string'){
 return vdom.core.text_node.call(null,arg);
 } else {
@@ -50,12 +34,12 @@ return vdom.core.html_node.call(null,tag,attrs,cljs.core.map.call(null,vdom$core
 }
 }
 });
-vdom.core.svg_tree = (function vdom$core$svg_tree(p__38526){
-var vec__38528 = p__38526;
-var tag = cljs.core.nth.call(null,vec__38528,(0),null);
-var attrs = cljs.core.nth.call(null,vec__38528,(1),null);
-var children = cljs.core.nthnext.call(null,vec__38528,(2));
-var arg = vec__38528;
+vdom.core.svg_tree = (function vdom$core$svg_tree(p__23951){
+var vec__23953 = p__23951;
+var tag = cljs.core.nth.call(null,vec__23953,(0),null);
+var attrs = cljs.core.nth.call(null,vec__23953,(1),null);
+var children = cljs.core.nthnext.call(null,vec__23953,(2));
+var arg = vec__23953;
 if(typeof arg === 'string'){
 return vdom.core.text_node.call(null,arg);
 } else {
@@ -70,21 +54,30 @@ return vdom.core.svg_node.call(null,tag,attrs,cljs.core.map.call(null,vdom$core$
 vdom.core.renderer = (function vdom$core$renderer(elem){
 var tree = cljs.core.atom.call(null,vdom.core.text_node.call(null,""));
 var root = cljs.core.atom.call(null,vdom.core.create.call(null,cljs.core.deref.call(null,tree)));
+var update = (((window.requestAnimationFrame == null))?((function (tree,root){
+return (function (f){
+return f.call(null);
+});})(tree,root))
+:((function (tree,root){
+return (function (f){
+return window.requestAnimationFrame(f);
+});})(tree,root))
+);
 elem.appendChild(cljs.core.deref.call(null,root));
 
-return ((function (tree,root){
+return ((function (tree,root,update){
 return (function (view){
 var new_tree = vdom.core.html_tree.call(null,view);
 var patches = vdom.core.diff.call(null,cljs.core.deref.call(null,tree),new_tree);
-return window.requestAnimationFrame(((function (new_tree,patches,tree,root){
+return update.call(null,((function (new_tree,patches,tree,root,update){
 return (function (){
 cljs.core.swap_BANG_.call(null,root,vdom.core.patch,patches);
 
 return cljs.core.reset_BANG_.call(null,tree,new_tree);
-});})(new_tree,patches,tree,root))
+});})(new_tree,patches,tree,root,update))
 );
 });
-;})(tree,root))
+;})(tree,root,update))
 });
 
 //# sourceMappingURL=core.js.map
