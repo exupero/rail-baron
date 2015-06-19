@@ -1,0 +1,3 @@
+var topojson = {
+  "feature": function () {}
+}

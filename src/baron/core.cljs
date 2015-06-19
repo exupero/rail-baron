@@ -20,7 +20,7 @@
     ch))
 
 (defn land-border [shape]
-  (.feature js/topojson shape (-> shape .-objects .-land)))
+  (.feature js/topojson shape (-> shape (aget "objects") (aget "land"))))
 
 (def projection
   (-> js/d3 .-geo .azimuthalEqualArea
@@ -60,7 +60,10 @@
         :let [[x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onmousedown #(async/put! actions [:select city-key])}
+         :onclick #(async/put! actions [:select city-key])
+         :ontouchstart (fn [e]
+                         (.preventDefault e)
+                         (async/put! actions [:select city-key]))}
      [:circle {:r 10}]]))
 
 (defn ui-connection [{:keys [cities selected]} actions]
@@ -75,7 +78,10 @@
               [x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onmousedown #(async/put! actions [:deselect city-key])}
+         :onclick #(async/put! actions [:select city-key])
+         :ontouchstart (fn [e]
+                         (.preventDefault e)
+                         (async/put! actions [:deselect city-key]))}
      [:circle {:class "selected" :r 13}]]))
 
 (defn ui-text [{[a b] :selected :keys [cities payoffs]} actions]

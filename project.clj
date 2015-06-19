@@ -28,6 +28,7 @@
                               :compiler {:output-to "static/js/rail-baron.js"
                                          :warnings true
                                          :elide-asserts true
+                                         :externs ["externs/vdom.js" "externs/d3.js" "externs/topojson.js"]
                                          :optimizations :advanced
                                          :pretty-print false
                                          :output-wrapper false}}}})
