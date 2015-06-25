@@ -12,20 +12,14 @@
     (remove seq?)
     (remove nil?)))
 
-(def html-node
-  (memoize
-    (fn [tag attrs children]
-      (new js/VDOM.VHtml (name tag) (clj->js attrs) (clj->js children)))))
+(defn html-node [tag attrs children]
+  (new js/VDOM.VHtml (name tag) (clj->js attrs) (clj->js children)))
 
-(def svg-node
-  (memoize
-    (fn [tag attrs children]
-      (new js/VDOM.VSvg (name tag) (clj->js attrs) (clj->js children)))))
+(defn svg-node [tag attrs children]
+  (new js/VDOM.VSvg (name tag) (clj->js attrs) (clj->js children)))
 
-(def text-node
-  (memoize
-    (fn [s]
-      (new js/VDOM.VText s))))
+(defn text-node [s]
+  (new js/VDOM.VText s))
 
 (declare svg-tree)
 

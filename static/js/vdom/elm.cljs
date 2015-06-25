@@ -13,6 +13,11 @@
         (recur m2 (<! in))))
     out))
 
+(defn event [ch x]
+  (fn [e]
+    (.preventDefault e)
+    (put! ch x)))
+
 (defn render! [views elem]
   (let [render (renderer elem)]
     (go-loop []

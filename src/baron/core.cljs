@@ -3,7 +3,7 @@
             [cljs.core.async :as async :refer [chan put! close!]]
             [cljs.core.match :refer-macros  [match]]
             [goog.net.XhrIo :as xhr]
-            [vdom.elm :refer [foldp render!]])
+            [vdom.elm :refer [foldp event render!]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (enable-console-print!)
@@ -60,17 +60,24 @@
         :let [[x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onclick #(async/put! actions [:select city-key])
-         :ontouchstart (fn [e]
-                         (.preventDefault e)
-                         (async/put! actions [:select city-key]))}
+         :onclick (event actions [:select city-key])
+         :ontouchstart (event actions [:select city-key])}
      [:circle {:r 10}]]))
 
 (defn ui-connection [{:keys [cities selected]} actions]
   (if (= 2 (count selected))
     (let [[a b] selected]
-      [:path {:class "connection"
-              :d (path (connection (cities a) (cities b)))}])))
+      (list
+        [:mask {:id "mask-cities-selected"}
+         [:rect {:fill "white" :width "100%" :height "100%"}]
+         (for [city-key selected
+               :let [{:keys [lon lat]} (cities city-key)
+                     [x y] (projection #js [lon lat])]]
+           [:g {:transform (str "translate(" x "," y ")")}
+            [:circle {:fill "black" :r 16.5}]])]
+        [:path {:class "connection"
+                :d (path (connection (cities a) (cities b)))
+                :mask "url(#mask-cities-selected)"}]))))
 
 (defn ui-selected-cities [{:keys [cities selected]} actions]
   (for [city-key selected
@@ -78,11 +85,10 @@
               [x y] (projection #js [lon lat])]]
     [:g {:class "city"
          :transform (str "translate(" x "," y ")")
-         :onclick #(async/put! actions [:select city-key])
-         :ontouchstart (fn [e]
-                         (.preventDefault e)
-                         (async/put! actions [:deselect city-key]))}
-     [:circle {:class "selected" :r 13}]]))
+         :onclick (event actions [:deselect city-key])
+         :ontouchstart (event actions [:deselect city-key])}
+     [:circle {:class "selected-ring" :r 14}]
+     [:circle {:class "selected" :r 10}]]))
 
 (defn ui-text [{[a b] :selected :keys [cities payoffs]} actions]
   (let [[cx cy :as centroid] (.centroid path (connection (cities a) (cities b)))]
@@ -93,8 +99,7 @@
         [:g {:transform (str "translate(" x "," y ")"
                              (case (half centroid pos)
                                "north" "translate(0,-25)"
-                               "south" "translate(0,25)"))
-             :onclick #(async/put! actions [:deselect city-key])}
+                               "south" "translate(0,25)"))}
          [:text {:dy 7 :class "stroke"} city]
          [:text {:dy 7} city]])
       (if (and a b)

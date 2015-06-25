@@ -18,6 +18,13 @@ main {
   fill: firebrick;
 }
 
+.city .selected-ring {
+  fill: none;
+  stroke: firebrick;
+  stroke-width: 5;
+  stroke-dasharray: 1 1;
+}
+
 text {
   text-anchor: middle;
   font-size: 22px;
@@ -34,5 +41,6 @@ text.stroke {
 .connection {
   fill: none;
   stroke: firebrick;
-  stroke-width: 3;
+  stroke-width: 6;
+  stroke-dasharray: 1 1;
 }
