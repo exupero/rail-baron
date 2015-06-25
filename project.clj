@@ -13,19 +13,19 @@
                              :incremental true
                              :jar true
                              :assert true
-                             :compiler {:output-to "static/js/rail-baron-dev.js"
-                                        :output-dir "static/js"
+                             :compiler {:output-to "out/js/rail-baron-dev.js"
+                                        :output-dir "out/js"
                                         :warnings true
                                         :elide-asserts true
                                         :optimizations :none
-                                        :source-map "static/js/rail-baron-dev.js.map"
+                                        :source-map "out/js/rail-baron-dev.js.map"
                                         :pretty-print true
                                         :output-wrapper false}}
                        :prod {:source-paths ["src"]
                               :incremental true
                               :jar true
                               :assert true
-                              :compiler {:output-to "static/js/rail-baron.js"
+                              :compiler {:output-to "out/js/rail-baron.js"
                                          :warnings true
                                          :elide-asserts true
                                          :externs ["externs/vdom.js" "externs/d3.js" "externs/topojson.js"]
