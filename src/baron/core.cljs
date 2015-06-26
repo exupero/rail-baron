@@ -98,8 +98,8 @@
                   [x y :as pos] (projection #js [lon lat])]]
         [:g {:transform (str "translate(" x "," y ")"
                              (case (half centroid pos)
-                               "north" "translate(0,-25)"
-                               "south" "translate(0,25)"))}
+                               "north" "translate(0,-28)"
+                               "south" "translate(0,28)"))}
          [:text {:dy 7 :class "stroke"} city]
          [:text {:dy 7} city]])
       (if (and a b)
