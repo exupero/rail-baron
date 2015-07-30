@@ -3,3 +3,5 @@ target
 .nrepl-port
 checkouts
 repl
+out
+!out/js/rail-baron.js
